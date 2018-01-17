@@ -1,5 +1,5 @@
 ---
-title: "BIO 381 Webpage"
+title: "BIO 381: Computational Biology"
 author: "Ethan Thibault"
 date: "1/17/2018"
 output: 
@@ -9,6 +9,6 @@ output:
 
 ---
 
-## Creates a title
+## Introduction
 
-Here is my beautiful website!!!
+This webpage is a compilation of a semester's worth of work in BIO 381 (Computational Biology). As you move through, you will encounter sequentially, my assignments and anything fun I learn how to do.
