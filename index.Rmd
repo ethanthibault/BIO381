@@ -9,8 +9,110 @@ output:
 
 ---
 
-<img src="Ethan.jpg" width="200" height="200" />
-
 ## Introduction
 
 This webpage is a compilation of a semester's worth of work in BIO 381 (Computational Biology). As you move through, you will encounter sequentially, my assignments and anything fun I learn how to do.
+
+<img src="Ethan.jpg" width="200" height="200" />
+
+#### Ethan Thibault  
+**Office:** Jeffords Hall 324  
+**Email:** eathibau@uvm.edu  
+
+
+## Helpful Links   
+* [Course Webpage](https://gotellilab.github.io/Bio381/)   
+* [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)   
+* [Github website templates](https://github.com/jekyll/jekyll/wiki/Themes)   
+* [R help](http://stackoverflow.com/questions/tagged/r)   
+
+## Table of contents of Homework Assignments    
+* [Homework 1: ](#id-section1)
+* [Homework 2: ](#id-section2)
+* [Homework 3: ](#id-section3)
+* [Homework 4: ](#id-section4)
+* [Homework 5: ](#id-section5)
+* [Homework 6: ](#id-section6) 
+* [Homework 7: ](#id-section7)
+* [Homework 8: ](#id-section8)
+* [Homework 9: ](#id-section9)   
+* [Week 10: ](#id-section10)
+* [Week 11: ](#id-section11)
+
+
+## Homework Solutions and Notes
+
+------
+<div id='id-section1'/>
+### Week 1: Setting up a webpage 
+[Assignment Page](https://gotellilab.github.io/Bio381/Homeworks/Homework01.html)   
+   
+Due:   
+1. A fun fact about yourself   
+2. Your github homepage   
+3. Your BIO 381 webpage    
+   
+No solution   
+
+------
+<div id='id-section2'/>
+### Week 2:    
+
+Due:   
+ 
+
+------
+<div id='id-section3'/>
+### Week 3: 
+
+Due:   
+       
+
+
+
+------
+<div id='id-section4'/>
+### Week 4:    
+
+Due:   
+      
+
+------
+<div id='id-section5'/>   
+### Week 5: 
+Due:   
+   
+ 
+------
+<div id='id-section6'/>   
+### Week 6: 
+
+------
+<div id='id-section7'/>
+### Week 7: 
+
+
+------
+<div id='id-section8'/>
+### Week 8:  
+
+Due:   
+   
+
+------
+<div id='id-section9'/>
+### Week 9: 
+
+Due:   
+
+------
+<div id='id-section10'/>
+### Week 10:    
+
+
+------
+<div id='id-section11'/>
+### Week 11:   
+
+
+
