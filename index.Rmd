@@ -2,8 +2,12 @@
 title: "BIO 381 Webpage"
 author: "Ethan Thibault"
 date: "1/17/2018"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
+
 
 ## Creates a title
 
