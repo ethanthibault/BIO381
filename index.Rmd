@@ -7,5 +7,4 @@ output: html_document
 
 ## Creates a title
 
-**bold**
-*italics*
+Here is my beautiful website!!!
