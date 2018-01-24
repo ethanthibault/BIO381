@@ -27,8 +27,8 @@ This webpage is a compilation of a semester's worth of work in BIO 381 (Computat
 * [R help](http://stackoverflow.com/questions/tagged/r)   
 
 ## Table of contents of Homework Assignments    
-* [Homework 1: ](#id-section1)
-* [Homework 2: ](#id-section2)
+* [Week 1: Setting up a webpage.](#id-section1)
+* [Week 2: Creating Flowcharts](#id-section2)
 * [Homework 3: ](#id-section3)
 * [Homework 4: ](#id-section4)
 * [Homework 5: ](#id-section5)
@@ -56,9 +56,14 @@ No solution
 
 ------
 <div id='id-section2'/>
-### Week 2:    
+### Week 2: Creating Flowcharts   
 
-Due:   
+Due:  
+1. Create two diagrams in Typora  
+2. Create a link from webpage to my diagrams  
+3. Commit and publish to GitHub webpage 
+
+[Typora Diagrams](Typora_Diagrams.html)
  
 
 ------
