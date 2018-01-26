@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>Typora_Diagrams.md</title><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --node-fill:  #ECECFF; --node-border:  #CCCCFF; --note-fill:  #fff5ad; --note-border:  #aaaa33; --cluster-fill:  #ffffde  !important; --cluster-border:  #aaaa33  !important; }
+<title>Typora_Diagrams.md</title><style type='text/css'>html {overflow-x: initial !important;}:root { --node-fill:  #ECECFF; --node-border:  #CCCCFF; --note-fill:  #fff5ad; --note-border:  #aaaa33; --cluster-fill:  #ffffde  !important; --cluster-border:  #aaaa33  !important; }
 .mermaid .label { color: var(--text-color); }
 .node rect, .node circle, .node ellipse, .node polygon { fill: var(--node-fill); stroke: var(--node-border); stroke-width: 1px; }
 .edgePath .path { stroke: var(--text-color); }
@@ -299,415 +299,278 @@ a.md-print-anchor { border: none !important; display: inline-block !important; p
 [lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; }
 
 
-:root {
-    --side-bar-bg-color: #fafafa;
-    --control-text-color: #777;
-}
-
-@include-when-export url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Open Sans Regular'),url('file:///Users/ethanthibault/Library/Application%20Support/abnerworks.Typora/themes/github/400.woff') format('woff')
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: italic;
-    font-weight: normal;
-    src: local('Open Sans Italic'),url('file:///Users/ethanthibault/Library/Application%20Support/abnerworks.Typora/themes/github/400i.woff') format('woff')
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: bold;
-    src: local('Open Sans Bold'),url('file:///Users/ethanthibault/Library/Application%20Support/abnerworks.Typora/themes/github/700.woff') format('woff')
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: italic;
-    font-weight: bold;
-    src: local('Open Sans Bold Italic'),url('file:///Users/ethanthibault/Library/Application%20Support/abnerworks.Typora/themes/github/700i.woff') format('woff')
-}
-
 html {
-    font-size: 16px;
+	font-size: 19px;
 }
 
+html, body {
+	margin: auto;
+	background: #fefefe;
+}
 body {
-    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: rgb(51, 51, 51);
-    line-height: 1.6;
+	font-family: "Vollkorn", Palatino, Times;
+	color: #333;
+	line-height: 1.4;
+	text-align: justify;
+}
+#write {
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: 2em;
+	line-height: 1.53;
 }
 
-#write{
-    max-width: 860px;
-  	margin: 0 auto;
-  	padding: 20px 30px 40px 30px;
-	padding-top: 20px;
-    padding-bottom: 100px;
-}
-#write > ul:first-child,
-#write > ol:first-child{
-    margin-top: 30px;
+#write>h2:first-child,
+#write>h3:first-child,
+#write>h4:first-child,
+#write>p:first-child{
+	margin-top: 1.2em;
 }
 
-body > *:first-child {
-    margin-top: 0 !important;
-}
-body > *:last-child {
-    margin-bottom: 0 !important;
-}
-a {
-    color: #4183C4;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    line-height: 1.4;
-    cursor: text;
-}
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    /*background: url("file:///Users/ethanthibault/Library/Application%20Support/images/modules/styleguide/para.png") no-repeat 10px center;*/
-    text-decoration: none;
-}
-h1 tt,
-h1 code {
-    font-size: inherit;
-}
-h2 tt,
-h2 code {
-    font-size: inherit;
-}
-h3 tt,
-h3 code {
-    font-size: inherit;
-}
-h4 tt,
-h4 code {
-    font-size: inherit;
-}
-h5 tt,
-h5 code {
-    font-size: inherit;
-}
-h6 tt,
-h6 code {
-    font-size: inherit;
-}
+/* Typography
+-------------------------------------------------------- */
+
+#write>h1:first-child,
 h1 {
-    padding-bottom: .3em;
-    font-size: 2.25em;
-    line-height: 1.2;
-    border-bottom: 1px solid #eee;
-}
-h2 {
-   padding-bottom: .3em;
-    font-size: 1.75em;
-    line-height: 1.225;
-    border-bottom: 1px solid #eee;
-}
-h3 {
-    font-size: 1.5em;
-    line-height: 1.43;
-}
-h4 {
-    font-size: 1.25em;
-}
-h5 {
-    font-size: 1em;
-}
-h6 {
-   font-size: 1em;
-    color: #777;
-}
-p,
-blockquote,
-ul,
-ol,
-dl,
-table{
-    margin: 0.8em 0;
-}
-li>ol,
-li>ul {
-    margin: 0 0;
-}
-hr {
-    height: 4px;
-    padding: 0;
-    margin: 16px 0;
-    background-color: #e7e7e7;
-    border: 0 none;
-    overflow: hidden;
-    box-sizing: content-box;
-    border-bottom: 1px solid #ddd;
+	margin-top: 1.6em;
+	font-weight: normal;
 }
 
-body > h2:first-child {
-    margin-top: 0;
-    padding-top: 0;
+h1 {
+	font-size:3em;
 }
-body > h1:first-child {
-    margin-top: 0;
-    padding-top: 0;
+
+h2 {
+	margin-top:2em;
+	font-weight: normal;
 }
-body > h1:first-child + h2 {
-    margin-top: 0;
-    padding-top: 0;
+
+h3 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 3em;
 }
-body > h3:first-child,
-body > h4:first-child,
-body > h5:first-child,
-body > h6:first-child {
-    margin-top: 0;
-    padding-top: 0;
+
+h1, 
+h2, 
+h3{
+	text-align: center;
 }
-a:first-child h1,
-a:first-child h2,
-a:first-child h3,
-a:first-child h4,
-a:first-child h5,
-a:first-child h6 {
-    margin-top: 0;
-    padding-top: 0;
+
+h2:after{
+	border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    height: 1px;
 }
-h1 p,
-h2 p,
-h3 p,
-h4 p,
-h5 p,
-h6 p {
-    margin-top: 0;
+
+h1+h2, h2+h3 {
+	margin-top: 0.83em;
 }
-li p.first {
-    display: inline-block;
+
+p,
+.mathjax-block {
+	margin-top: 0;
+	-webkit-hypens: auto;
+	-moz-hypens: auto;
+	hyphens: auto;
 }
-ul,
+ul {
+	list-style: square;
+	padding-left: 1.2em;
+}
 ol {
-    padding-left: 30px;
-}
-ul:first-child,
-ol:first-child {
-    margin-top: 0;
-}
-ul:last-child,
-ol:last-child {
-    margin-bottom: 0;
+	padding-left: 1.2em;
 }
 blockquote {
-    border-left: 4px solid #dddddd;
-    padding: 0 15px;
-    color: #777777;
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ddd;
 }
-blockquote blockquote {
-    padding-right: 0;
+code,
+pre {
+	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+	font-size: .9em;
+	background: white;
+}
+.md-fences{
+	margin-left: 1em;
+	padding-left: 1em;
+	border: 1px solid #ddd;
+	padding-bottom: 8px;
+	padding-top: 6px;
+	margin-bottom: 1.5em;
+}
+
+a {
+	color: #2484c1;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a img {
+	border: none;
+}
+h1 a,
+h1 a:hover {
+	color: #333;
+	text-decoration: none;
+}
+hr {
+	color: #ddd;
+	height: 1px;
+	margin: 2em 0;
+	border-top: solid 1px #ddd;
+	border-bottom: none;
+	border-left: 0;
+	border-right: 0;
+}
+.md-table-edit {
+	background: #ededed;
+    padding-top: 4px;
 }
 table {
-    padding: 0;
-    word-break: initial;
+	margin-bottom: 1.333333rem
 }
-table tr {
-    border-top: 1px solid #cccccc;
-    margin: 0;
-    padding: 0;
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.333333rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
 }
-table tr:nth-child(2n) {
-    background-color: #f8f8f8;
+table th {
+	font-weight: bold
 }
-table tr th {
-    font-weight: bold;
-    border: 1px solid #cccccc;
-    text-align: left;
-    margin: 0;
-    padding: 6px 13px;
+table thead th {
+	vertical-align: bottom
 }
-table tr td {
-    border: 1px solid #cccccc;
-    text-align: left;
-    margin: 0;
-    padding: 6px 13px;
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
 }
-table tr th:first-child,
-table tr td:first-child {
-    margin-top: 0;
-}
-table tr th:last-child,
-table tr td:last-child {
-    margin-bottom: 0;
+table tbody+tbody {
+	border-top: 2px solid #ddd
 }
 
-.CodeMirror-gutters {
-    border-right: 1px solid #ddd;
-}
-
-.md-fences,
-code,
-tt {
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    padding: 0;
-    font-family: Consolas, "Liberation Mono", Courier, monospace;
-    padding: 2px 4px 0px 4px;
-    font-size: 0.9em;
-}
-
-.md-fences {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding: 0.2em 1em;
-    padding-top: 8px;
-    padding-bottom: 6px;
-}
 .task-list{
-	padding-left: 0;
+	padding:0;
 }
 
 .task-list-item {
-	padding-left:32px;
+	padding-left: 1.6rem;
 }
 
-.task-list-item input {
-  top: 3px;
-  left: 8px;
+.task-list-item input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.33333333rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #fefefe;
 }
 
-@media screen and (min-width: 914px) {
-    /*body {
-        width: 854px;
-        margin: 0 auto;
-    }*/
-}
-@media print {
-    html {
-        font-size: 13px;
-    }
-    table,
-    pre {
-        page-break-inside: avoid;
-    }
-    pre {
-        word-wrap: break-word;
-    }
-}
-
-.md-fences {
-	background-color: #f8f8f8;
-}
-#write pre.md-meta-block {
-	padding: 1rem;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border: 0;
-    border-radius: 3px;
-    color: #777777;
-    margin-top: 0 !important;
-}
-
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
-}
-
-#write>h3.md-focus:before{
-	left: -1.5625rem;
-	top: .375rem;
-}
-#write>h4.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h5.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h6.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-.md-image>.md-meta {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    font-family: Consolas, "Liberation Mono", Courier, monospace;
-    padding: 2px 4px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
-}
-
-.md-tag{
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before{
 	color: inherit;
 }
+.md-tag {
+	color: inherit;
+	font: inherit;
+}
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+}
+#write pre.md-meta-block {
+	white-space: pre;
+	background: #f8f8f8;
+	border: 0px;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
 
-.md-toc { 
-    margin-top:20px;
-    padding-bottom:20px;
+	margin-bottom: 2em;
+	margin-top: -1.3333333333333rem;
+	padding-top: 26px;
+	padding-bottom: 10px;
+	line-height: 1.8em;
+	font-size: 0.9em;
+	font-size: 0.76em;
+	padding-left: 0;
+}
+.md-img-error.md-image>.md-meta{
+	vertical-align: bottom;
+}
+#write>h5.md-focus:before {
+	top: 2px;
 }
 
-.sidebar-tabs {
-    border-bottom: none;
+.md-toc {
+	margin-top: 40px;
 }
 
-#typora-quick-open {
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
+.md-toc-content {
+	padding-bottom: 20px;
 }
 
-#typora-quick-open-item {
-    background-color: #FAFAFA;
-    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
-    border-style: solid;
-    border-width: 1px;
+.outline-expander:before {
+	color: inherit;
+	font-size: 14px;
+	top: auto;
+	content: "\f0da";
+	font-family: FontAwesome;
 }
 
-#md-notification:before {
-    top: 10px;
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  	content: "\f0d7";
 }
 
-/** focus mode */
-.on-focus-mode blockquote {
-    border-left-color: rgba(85, 85, 85, 0.12);
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
 }
 
-header, .context-menu, .megamenu-content, footer{
-    font-family: "Segoe UI", "Arial", sans-serif;
+.html-for-mac #typora-sidebar {
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
-.file-node-content:hover .file-node-icon,
-.file-node-content:hover .file-node-open-state{
-    visibility: visible;
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
 }
 
-.mac-seamless-mode #typora-sidebar {
-    background-color: #fafafa;
-    background-color: var(--side-bar-bg-color);
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
 }
 
-.md-lang {
-    color: #b4654d;
+.typora-node .file-list-item-parent-loc, 
+.typora-node .file-list-item-time, 
+.typora-node .file-list-item-summary {
+	font-family: arial, sans-serif;
 }
-
 
 
 </style>
 </head>
 <body class='typora-export' >
-<div  id='write'  class = 'is-mac'><p>This is a Pathway Analysis/Cause andEffect graphic showing what variables are playing a role in my experiment.</p><div class="md-diagram-panel" mdtype="math_block"><svg id="mermaidChart593" width="842.4000129699707" xmlns="http://www.w3.org/2000/svg" height="772.6000061035156" viewBox="0 0 862.4000129699707 792.6000061035156" style="height: auto; max-width: 100%;"><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M394.25000381469727,140.5L394.25000381469727,196L457.6654449911679,243" marker-end="url(#arrowhead19675)" style="fill:none"></path><defs><marker id="arrowhead19675" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M430.00000381469727,274.7910749393788L190.20000076293945,321L190.20000076293945,423.8000030517578" marker-end="url(#arrowhead19676)" style="fill:none"></path><defs><marker id="arrowhead19676" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M165.33408841617597,487.8000030517578L94,579.6000061035156L94.5,605.1000061035156" marker-end="url(#arrowhead19677)" style="fill:none"></path><defs><marker id="arrowhead19677" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M215.06591310970293,487.8000030517578L286.4000015258789,579.6000061035156L286.9000015258789,610.7000061035155" marker-end="url(#arrowhead19678)" style="fill:none"></path><defs><marker id="arrowhead19678" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M486.00000381469727,285L486.00000381469727,321L486.5000038146973,367.500003051758" marker-end="url(#arrowhead19679)" style="fill:none"></path><defs><marker id="arrowhead19679" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M542.0000038146973,277.4343430892394L723.6000099182129,321L724.1000099182128,357.5000030517576" marker-end="url(#arrowhead19680)" style="fill:none"></path><defs><marker id="arrowhead19680" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M577.7500038146973,149L577.7500038146973,196L514.3345626382267,243" marker-end="url(#arrowhead19681)" style="fill:none"></path><defs><marker id="arrowhead19681" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(394.25000381469727,196)" style="opacity: 1;"><g transform="translate(-75.5,-22)" class="label"><foreignObject width="151" height="44"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Selection on SNPS <br>(Local Adaptation)</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(486.00000381469727,321)" style="opacity: 1;"><g transform="translate(-46,-11)" class="label"><foreignObject width="92" height="22"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Cold Stress</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(577.7500038146973,196)" style="opacity: 1;"><g transform="translate(-88,-11)" class="label"><foreignObject width="176" height="22"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Non-native Background</span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="A" transform="translate(394.25000381469727,84.5)" style="opacity: 1;"><circle x="-56" y="-21" r="56"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-46,-11)"><foreignObject width="92" height="22"><div style="display: inline-block; white-space: nowrap;">Environment</div></foreignObject></g></g></g><g class="node" id="B" transform="translate(486.00000381469727,264)" style="opacity: 1;"><rect rx="0" ry="0" x="-56" y="-21" width="112" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-46,-11)"><foreignObject width="92" height="22"><div style="display: inline-block; white-space: nowrap;">GI Variants</div></foreignObject></g></g></g><g class="node" id="C" transform="translate(190.20000076293945,455.8000030517578)" style="opacity: 1;"><rect rx="5" ry="5" x="-157" y="-32" width="314" height="64"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-147,-22)"><foreignObject width="294" height="44"><div style="display: inline-block; white-space: nowrap;">General Stress Exposure <br>(Salinity, Drought, Heat, and Cold)</div></foreignObject></g></g></g><g class="node" id="D" transform="translate(94,678.6000061035156)" style="opacity: 1;"><polygon points="74,0 148,-74 74,-148 0,-74" rx="5" ry="5" transform="translate(-74,74)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-50.5,-22)"><foreignObject width="101" height="44"><div style="display: inline-block; white-space: nowrap;">Chlorophyll <br>Fluorescence</div></foreignObject></g></g></g><g class="node" id="E" transform="translate(286.4000015258789,678.6000061035156)" style="opacity: 1;"><polygon points="68.4,0 136.8,-68.4 68.4,-136.8 0,-68.4" rx="5" ry="5" transform="translate(-68.4,68.4)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-54.5,-11)"><foreignObject width="109" height="22"><div style="display: inline-block; white-space: nowrap;">Survival Rate</div></foreignObject></g></g></g><g class="node" id="F" transform="translate(486.00000381469727,455.8000030517578)" style="opacity: 1;"><polygon points="88.80000000000001,0 177.60000000000002,-88.80000000000001 88.80000000000001,-177.60000000000002 0,-88.80000000000001" rx="5" ry="5" transform="translate(-88.80000000000001,88.80000000000001)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-80,-11)"><foreignObject width="160" height="22"><div style="display: inline-block; white-space: nowrap;">Electrolyte Leakage</div></foreignObject></g></g></g><g class="node" id="G" transform="translate(723.6000099182129,455.8000030517578)" style="opacity: 1;"><polygon points="98.80000000000001,0 197.60000000000002,-98.80000000000001 98.80000000000001,-197.60000000000002 0,-98.80000000000001" rx="5" ry="5" transform="translate(-98.80000000000001,98.80000000000001)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-92.5,-11)"><foreignObject width="185" height="22"><div style="display: inline-block; white-space: nowrap;">Flowering Time/Bolting</div></foreignObject></g></g></g><g class="node" id="H" transform="translate(577.7500038146973,84.5)" style="opacity: 1;"><circle x="-64.5" y="-32" r="64.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-54.5,-22)"><foreignObject width="109" height="44"><div style="display: inline-block; white-space: nowrap;">Experimental <br>Design</div></foreignObject></g></g></g></g></g></g></svg></div><p>This is a logic tree for the next steps of my experiment. I will be transforming <em>Arabidopsis thaliana</em> mutants with gene variants to identify if local adaptation is at play on GI in <em>P. balsamifera</em>.</p><div class="md-diagram-panel" mdtype="math_block"><svg id="mermaidChart594" width="2526" xmlns="http://www.w3.org/2000/svg" height="341" viewBox="0 0 2546 361" style="height: auto; max-width: 100%;"><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M210.20588235294116,66.75L292,41L318.5,41" marker-end="url(#arrowhead19731)" style="fill:none"></path><defs><marker id="arrowhead19731" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M360.5,41L387,41L433,41" marker-end="url(#arrowhead19732)" style="fill:none"></path><defs><marker id="arrowhead19732" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M210.20588235294116,108.75L292,134.5L317,134.5" marker-end="url(#arrowhead19733)" style="fill:none"></path><defs><marker id="arrowhead19733" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M362,134.5L387,134.5L412,134.5" marker-end="url(#arrowhead19734)" style="fill:none"></path><defs><marker id="arrowhead19734" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M660.8106796116505,113.5L776,83L802.5,83" marker-end="url(#arrowhead19735)" style="fill:none"></path><defs><marker id="arrowhead19735" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M844.5,83L871,83L1026,83" marker-end="url(#arrowhead19736)" style="fill:none"></path><defs><marker id="arrowhead19736" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M660.8106796116505,155.5L776,186L801,186" marker-end="url(#arrowhead19737)" style="fill:none"></path><defs><marker id="arrowhead19737" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M846,186L871,186L896,186" marker-end="url(#arrowhead19738)" style="fill:none"></path><defs><marker id="arrowhead19738" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1220.4029126213593,154L1302,134.5L1333,134.5" marker-end="url(#arrowhead19739)" style="fill:none"></path><defs><marker id="arrowhead19739" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1375,134.5L1406,134.5L1519,134.5" marker-end="url(#arrowhead19740)" style="fill:none"></path><defs><marker id="arrowhead19740" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1220.4029126213593,218L1302,237.5L1327,237.5" marker-end="url(#arrowhead19741)" style="fill:none"></path><defs><marker id="arrowhead19741" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1381,237.5L1406,237.5L1431,237.5" marker-end="url(#arrowhead19742)" style="fill:none"></path><defs><marker id="arrowhead19742" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1869.1553398058252,216.5L2064,186L2090.5,186" marker-end="url(#arrowhead19743)" style="fill:none"></path><defs><marker id="arrowhead19743" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M2132.5,186L2159,186L2205,186" marker-end="url(#arrowhead19744)" style="fill:none"></path><defs><marker id="arrowhead19744" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1869.1553398058252,258.5L2064,289L2089,289" marker-end="url(#arrowhead19745)" style="fill:none"></path><defs><marker id="arrowhead19745" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M2134,289L2159,289L2184,289" marker-end="url(#arrowhead19746)" style="fill:none"></path><defs><marker id="arrowhead19746" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="A" transform="translate(143.5,87.75)" style="opacity: 1;"><rect rx="5" ry="5" x="-123.5" y="-21" width="247" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-113.5,-11)"><foreignObject width="227" height="22"><div style="display: inline-block; white-space: nowrap;">Are gi2 mutants homozygous?</div></foreignObject></g></g></g><g class="node" id="B" transform="translate(339.5,41)" style="opacity: 1;"><circle x="-18.5" y="-21" r="21"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-8.5,-11)"><foreignObject width="17" height="22"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="C" transform="translate(581.5,41)" style="opacity: 1;"><rect rx="5" ry="5" x="-148.5" y="-21" width="297" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-138.5,-11)"><foreignObject width="277" height="22"><div style="display: inline-block; white-space: nowrap;">Grow heterozygotes and cross them</div></foreignObject></g></g></g><g class="node" id="D" transform="translate(339.5,134.5)" style="opacity: 1;"><circle x="-22.5" y="-21" r="22.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-12.5,-11)"><foreignObject width="25" height="22"><div style="display: inline-block; white-space: nowrap;">YES</div></foreignObject></g></g></g><g class="node" id="E" transform="translate(581.5,134.5)" style="opacity: 1;"><rect rx="5" ry="5" x="-169.5" y="-21" width="339" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-159.5,-11)"><foreignObject width="319" height="22"><div style="display: inline-block; white-space: nowrap;">Were mutants successfully transformed?</div></foreignObject></g></g></g><g class="node" id="F" transform="translate(823.5,83)" style="opacity: 1;"><circle x="-18.5" y="-21" r="21"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-8.5,-11)"><foreignObject width="17" height="22"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="G" transform="translate(1086.5,83)" style="opacity: 1;"><rect rx="5" ry="5" x="-60.5" y="-21" width="121" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-50.5,-11)"><foreignObject width="101" height="22"><div style="display: inline-block; white-space: nowrap;">Troubleshoot</div></foreignObject></g></g></g><g class="node" id="H" transform="translate(823.5,186)" style="opacity: 1;"><circle x="-22.5" y="-21" r="22.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-12.5,-11)"><foreignObject width="25" height="22"><div style="display: inline-block; white-space: nowrap;">YES</div></foreignObject></g></g></g><g class="node" id="I" transform="translate(1086.5,186)" style="opacity: 1;"><rect rx="5" ry="5" x="-190.5" y="-32" width="381" height="64"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-180.5,-22)"><foreignObject width="361" height="44"><div style="display: inline-block; white-space: nowrap;">Do they respond differentially to stresses <br>(ie. cold, drought, heat, salinity)?</div></foreignObject></g></g></g><g class="node" id="J" transform="translate(1354,134.5)" style="opacity: 1;"><circle x="-18.5" y="-21" r="21"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-8.5,-11)"><foreignObject width="17" height="22"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="K" transform="translate(1735,134.5)" style="opacity: 1;"><rect rx="5" ry="5" x="-216" y="-32" width="432" height="64"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-206,-22)"><foreignObject width="412" height="44"><div style="display: inline-block; white-space: nowrap;">Is this a product of experimental design <br>or is GI not locally adapted for stress response?</div></foreignObject></g></g></g><g class="node" id="L" transform="translate(1354,237.5)" style="opacity: 1;"><circle x="-27" y="-21" r="27"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-17,-11)"><foreignObject width="34" height="22"><div style="display: inline-block; white-space: nowrap;">YESS</div></foreignObject></g></g></g><g class="node" id="M" transform="translate(1735,237.5)" style="opacity: 1;"><rect rx="5" ry="5" x="-304" y="-21" width="608" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-294,-11)"><foreignObject width="588" height="22"><div style="display: inline-block; white-space: nowrap;">Do these differences correlate to environmental gradients as expected?</div></foreignObject></g></g></g><g class="node" id="N" transform="translate(2111.5,186)" style="opacity: 1;"><circle x="-18.5" y="-21" r="21"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-8.5,-11)"><foreignObject width="17" height="22"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="O" transform="translate(2345,186)" style="opacity: 1;"><rect rx="5" ry="5" x="-140" y="-21" width="280" height="42"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-130,-11)"><foreignObject width="260" height="22"><div style="display: inline-block; white-space: nowrap;">Is GI playing a different role?</div></foreignObject></g></g></g><g class="node" id="P" transform="translate(2111.5,289)" style="opacity: 1;"><circle x="-22.5" y="-21" r="22.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-12.5,-11)"><foreignObject width="25" height="22"><div style="display: inline-block; white-space: nowrap;">YES</div></foreignObject></g></g></g><g class="node" id="Q" transform="translate(2345,289)" style="opacity: 1;"><rect rx="5" ry="5" x="-161" y="-32" width="322" height="64"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-151,-22)"><foreignObject width="302" height="44"><div style="display: inline-block; white-space: nowrap;">Local adaption is present and GI <br>has been impacted by this selection.</div></foreignObject></g></g></g></g></g></g></svg></div></div>
+<div  id='write'  class = 'is-mac'><p>This is a Pathway Analysis/Cause and Effect graphic showing what variables are playing a role in my experiment. Starting on the left, you see the pre-emptive effect of the environment. A population genetics study determined that the gene GIGANTEA (GI) has undergone local adaption in <em>Populus balsamifera</em> and created three distinct variants that correlate to mean summer temperature, bud flush and bud set. The literature suggests that GI is involved in various stress responses and plays an important role in the circadian clock and flowering time. I will be taking these GI variants and putting them into a uniform background, the <em>Arabidopsis thaliana</em> GI knockout <em>gi2</em>. Once successfully transformed, I will expose them to different stresses such as salinity, drought, heat and cold. Upon these manipulations, I will monitor fitness via chlorophyll fluorescence, survival rate, electrolyte leakage, and flowering time/bolting. If our hypothesis is correct, GI should be effecting the way these plants react to the different stresses. The node in the top right entitled experimental design is there because it may effect the GI variants ability to react to the different stresses. The easiest way to put these GI variants into a uniform background, it to put them into the easily transformable and manipulated, model plant <em>Arabidopsis thaliana</em>. The issue with this however is that this may interfere with regulatory elements that are the actual cause of local adaption across these variants. In an attempt to account for this, we are attempting to transform a species of poplar that has been shown to be transformable with <em>Agrobacterium tumefaciens</em>. </p><div class="md-diagram-panel" mdtype="math_block"><svg id="mermaidChart618" width="963.6000022888184" xmlns="http://www.w3.org/2000/svg" height="871.8000030517578" viewBox="0 0 983.6000022888184 891.8000030517578" style="height: auto; max-width: 100%;"><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M447.04999923706055,163L447.04999923706055,224L522.6885127505741,275" marker-end="url(#arrowhead20818)" style="fill:none"></path><defs><marker id="arrowhead20818" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M490.29999923706055,309.8265306122449L213.79999923706055,359L213.79999923706055,477.4000015258789" marker-end="url(#arrowhead20819)" style="fill:none"></path><defs><marker id="arrowhead20819" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M186.3544551730181,549.4000015258789L106,654.8000030517578L106.5,680.3000030517578" marker-end="url(#arrowhead20820)" style="fill:none"></path><defs><marker id="arrowhead20820" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M241.245543301103,549.4000015258789L321.5999984741211,654.8000030517578L322.0999984741211,686.7000061035156" marker-end="url(#arrowhead20821)" style="fill:none"></path><defs><marker id="arrowhead20821" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M556.7999992370605,321L556.7999992370605,359L557.2999992370608,409.90000152587913" marker-end="url(#arrowhead20822)" style="fill:none"></path><defs><marker id="arrowhead20822" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M623.2999992370605,313.00184902776994L827.2000007629395,359L827.7000007629391,397.50000152587876" marker-end="url(#arrowhead20823)" style="fill:none"></path><defs><marker id="arrowhead20823" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M666.5499992370605,173L666.5499992370605,224L590.911485723547,275" marker-end="url(#arrowhead20824)" style="fill:none"></path><defs><marker id="arrowhead20824" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(447.04999923706055,224)" style="opacity: 1;"><g transform="translate(-92,-26)" class="label"><foreignObject width="184" height="52"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Selection on SNPS <br>(Local Adaptation)</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(556.7999992370605,359)" style="opacity: 1;"><g transform="translate(-56.5,-13)" class="label"><foreignObject width="113" height="26"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Cold Stress</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(666.5499992370605,224)" style="opacity: 1;"><g transform="translate(-107.5,-13)" class="label"><foreignObject width="215" height="26"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Non-native Background</span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="A" transform="translate(447.04999923706055,96.5)" style="opacity: 1;"><circle x="-66.5" y="-23" r="66.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-56.5,-13)"><foreignObject width="113" height="26"><div style="display: inline-block; white-space: nowrap;">Environment</div></foreignObject></g></g></g><g class="node" id="B" transform="translate(556.7999992370605,298)" style="opacity: 1;"><rect rx="0" ry="0" x="-66.5" y="-23" width="133" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-56.5,-13)"><foreignObject width="113" height="26"><div style="display: inline-block; white-space: nowrap;">GI Variants</div></foreignObject></g></g></g><g class="node" id="C" transform="translate(213.79999923706055,513.4000015258789)" style="opacity: 1;"><rect rx="5" ry="5" x="-189" y="-36" width="378" height="72"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-179,-26)"><foreignObject width="358" height="52"><div style="display: inline-block; white-space: nowrap;">General Stress Exposure <br>(Salinity, Drought, Heat, and Cold)</div></foreignObject></g></g></g><g class="node" id="D" transform="translate(106,765.8000030517578)" style="opacity: 1;"><polygon points="86,0 172,-86 86,-172 0,-86" rx="5" ry="5" transform="translate(-86,86)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-61.5,-26)"><foreignObject width="123" height="52"><div style="display: inline-block; white-space: nowrap;">Chlorophyll <br>Fluorescence</div></foreignObject></g></g></g><g class="node" id="E" transform="translate(321.5999984741211,765.8000030517578)" style="opacity: 1;"><polygon points="79.60000000000001,0 159.20000000000002,-79.60000000000001 79.60000000000001,-159.20000000000002 0,-79.60000000000001" rx="5" ry="5" transform="translate(-79.60000000000001,79.60000000000001)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-66.5,-13)"><foreignObject width="133" height="26"><div style="display: inline-block; white-space: nowrap;">Survival Rate</div></foreignObject></g></g></g><g class="node" id="F" transform="translate(556.7999992370605,513.4000015258789)" style="opacity: 1;"><polygon points="104,0 208,-104 104,-208 0,-104" rx="5" ry="5" transform="translate(-104,104)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-97,-13)"><foreignObject width="194" height="26"><div style="display: inline-block; white-space: nowrap;">Electrolyte Leakage</div></foreignObject></g></g></g><g class="node" id="G" transform="translate(827.2000007629395,513.4000015258789)" style="opacity: 1;"><polygon points="116.4,0 232.8,-116.4 116.4,-232.8 0,-116.4" rx="5" ry="5" transform="translate(-116.4,116.4)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-112.5,-13)"><foreignObject width="225" height="26"><div style="display: inline-block; white-space: nowrap;">Flowering Time/Bolting</div></foreignObject></g></g></g><g class="node" id="H" transform="translate(666.5499992370605,96.5)" style="opacity: 1;"><circle x="-76.5" y="-36" r="76.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-66.5,-26)"><foreignObject width="133" height="52"><div style="display: inline-block; white-space: nowrap;">Experimental <br>Design</div></foreignObject></g></g></g></g></g></g></svg></div><p>Below is a flowchart that helped me to visualize the ultimate hypothesis I am trying to prove with the proximate hypothesis I am starting with. Ultimately I am trying to show that local adaptation occurs across a native species range, but to do this, I need to start with the candidate gene loci. After this flow chart is another diagram showing how I can move through these hypotheses.</p><div class="md-diagram-panel" mdtype="math_block"><svg height="411.28125" version="1.1" width="951.90625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 951.90625 411.28125" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; top: -0.4375px; max-width: 100%; height: auto;"><desc>Created with Raphaël 2.2.0</desc><defs><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block"></path><marker id="raphael-marker-endblock33-obj5uqfp" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5"><use xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="currentColor" stroke="none"></use></marker><marker id="raphael-marker-endblock33-obj60hyo" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5"><use xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="currentColor" stroke="none"></use></marker><marker id="raphael-marker-endblock33-objeyan4" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5"><use xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="currentColor" stroke="none"></use></marker><marker id="raphael-marker-endblock33-objfp5hj" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5"><use xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="currentColor" stroke="none"></use></marker></defs><rect x="0" y="0" width="488.46875" height="35.65625" rx="20" ry="20" fill="transparent" stroke="currentColor" fill-opacity="0" stroke-width="3" class="flowchart" id="hyp1" transform="matrix(1,0,0,1,233.2188,6)" style=""></rect><text x="10" y="17.828125" text-anchor="start" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="currentColor" id="hyp1t" class="flowchartt" transform="matrix(1,0,0,1,233.2188,6)" stroke-width="1" style="text-anchor: start; font-family: Arial; font-size: 14px;"><tspan dy="4.859375">Ultimate Hypothesis: Local adaptation occurs across native species ranges.</tspan></text><rect x="0" y="0" width="497.84375" height="35.65625" rx="0" ry="0" fill="transparent" stroke="currentColor" fill-opacity="0" stroke-width="3" class="flowchart" id="hyp2" transform="matrix(1,0,0,1,228.5313,97.6563)" style=""></rect><text x="10" y="17.828125" text-anchor="start" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="currentColor" id="hyp2t" class="flowchartt" transform="matrix(1,0,0,1,228.5313,97.6563)" stroke-width="1" style="text-anchor: start; font-family: Arial; font-size: 14px;"><tspan dy="4.859375">Local adaptation occurs within the Populus balsamifera native species range.</tspan></text><rect x="0" y="0" width="622.65625" height="35.65625" rx="0" ry="0" fill="transparent" stroke="currentColor" fill-opacity="0" stroke-width="3" class="flowchart" id="hyp3" transform="matrix(1,0,0,1,166.125,189.3125)" style=""></rect><text x="10" y="17.828125" text-anchor="start" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="currentColor" id="hyp3t" class="flowchartt" transform="matrix(1,0,0,1,166.125,189.3125)" stroke-width="1" style="text-anchor: start; font-family: Arial; font-size: 14px;"><tspan dy="4.859375">GIGANTEA is a locally adapted loci/gene in Populus balsamifera across it's native species range.</tspan></text><rect x="0" y="0" width="834.765625" height="35.65625" rx="0" ry="0" fill="transparent" stroke="currentColor" fill-opacity="0" stroke-width="3" class="flowchart" id="hyp4" transform="matrix(1,0,0,1,60.0703,280.9688)" style=""></rect><text x="10" y="17.828125" text-anchor="start" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="currentColor" id="hyp4t" class="flowchartt" transform="matrix(1,0,0,1,60.0703,280.9688)" stroke-width="1" style="text-anchor: start; font-family: Arial; font-size: 14px;"><tspan dy="4.859375">These haplotypes of GIGANTEA contribute to fitness of the trees in relation to their local environments and the associated stresses.</tspan></text><rect x="0" y="0" width="942.90625" height="35.65625" rx="20" ry="20" fill="transparent" stroke="currentColor" fill-opacity="0" stroke-width="3" class="flowchart" id="hyp5" transform="matrix(1,0,0,1,6,372.625)" style=""></rect><text x="10" y="17.828125" text-anchor="start" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="currentColor" id="hyp5t" class="flowchartt" transform="matrix(1,0,0,1,6,372.625)" stroke-width="1" style="text-anchor: start; font-family: Arial; font-size: 14px;"><tspan dy="4.859375">Proximate Hypothesis: These haplotypes of GIGANTEA will contribute differently to fitness in Arabidopsis thaliana when exposed to various stresses.</tspan></text><path fill="none" stroke="currentColor" d="M477.453125,41.65625C477.453125,41.65625,477.453125,79.85702085494995,477.453125,93.15641031763516" stroke-width="3" marker-end="url(#raphael-marker-endblock33-obj5uqfp)" style=""></path><path fill="none" stroke="currentColor" d="M477.453125,133.3125C477.453125,133.3125,477.453125,171.51327085494995,477.453125,184.81266031763516" stroke-width="3" marker-end="url(#raphael-marker-endblock33-obj60hyo)" style=""></path><path fill="none" stroke="currentColor" d="M477.453125,224.96875C477.453125,224.96875,477.453125,263.16952085494995,477.453125,276.46891031763516" stroke-width="3" marker-end="url(#raphael-marker-endblock33-objeyan4)" style=""></path><path fill="none" stroke="currentColor" d="M477.453125,316.625C477.453125,316.625,477.453125,354.82577085494995,477.453125,368.12516031763516" stroke-width="3" marker-end="url(#raphael-marker-endblock33-objfp5hj)" style=""></path></svg></div><p>This is a logic tree for my experiments where I will attempt to support the hypothesis that GIGANTIA (GI) is a locally adapted gene in <em>Populus balsamifera</em> that contributes to fitness across its native range. I start with the first hypothesis I can answer with my experimental design of whether these haplotypes confer differences in the non-native, but uniform background of <em>Arabidopsis thaliana</em>. Even though we have the ability to transform a species of <em>Populus</em>, it takes longer and is more difficult so we will do both, but it will come second. This will be finer tuning of the first attempt to move forward. After this we can ask wether those differences make sense in the context of their populations origin and the stresses it would encounter. If all of these line up than we can support our ultimate hypothesis.</p><div class="md-diagram-panel" mdtype="math_block"><svg id="mermaidChart617" width="6066" xmlns="http://www.w3.org/2000/svg" height="381.5" viewBox="0 0 6086 401.5" style="height: auto; max-width: 100%;"><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M788.4681583476764,165.25L1365,43L1392.5,43" marker-end="url(#arrowhead20780)" style="fill:none"></path><defs><marker id="arrowhead20780" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1438.5,43L1466,43L1511.5,43" marker-end="url(#arrowhead20781)" style="fill:none"></path><defs><marker id="arrowhead20781" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M2278.5,43L2324,43L2349,43" marker-end="url(#arrowhead20782)" style="fill:none"></path><defs><marker id="arrowhead20782" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M999.8984771573604,211.25L1365,237.5L1390,237.5" marker-end="url(#arrowhead20783)" style="fill:none"></path><defs><marker id="arrowhead20783" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1441,237.5L1466,237.5L1491,237.5" marker-end="url(#arrowhead20784)" style="fill:none"></path><defs><marker id="arrowhead20784" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M1996.4601542416453,214.5L2324,140.25L2520,140.25" marker-end="url(#arrowhead20785)" style="fill:none"></path><defs><marker id="arrowhead20785" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M2566,140.25L2762,140.25L3145.5,140.25" marker-end="url(#arrowhead20786)" style="fill:none"></path><defs><marker id="arrowhead20786" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M3881.5,140.25L4265,140.25L4290,140.25" marker-end="url(#arrowhead20787)" style="fill:none"></path><defs><marker id="arrowhead20787" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M2095.3451776649745,260.5L2324,286.75L2517.5,286.75" marker-end="url(#arrowhead20788)" style="fill:none"></path><defs><marker id="arrowhead20788" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M2568.5,286.75L2762,286.75L2787,286.75" marker-end="url(#arrowhead20789)" style="fill:none"></path><defs><marker id="arrowhead20789" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M3864.4543147208124,263.75L4265,237.5L4502,237.5" marker-end="url(#arrowhead20790)" style="fill:none"></path><defs><marker id="arrowhead20790" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M4548,237.5L4785,237.5L4938,237.5" marker-end="url(#arrowhead20791)" style="fill:none"></path><defs><marker id="arrowhead20791" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M5572,237.5L5725,237.5L5750,237.5" marker-end="url(#arrowhead20792)" style="fill:none"></path><defs><marker id="arrowhead20792" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M3864.4543147208124,309.75L4265,336L4499.5,336" marker-end="url(#arrowhead20793)" style="fill:none"></path><defs><marker id="arrowhead20793" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M4550.5,336L4785,336L4810,336" marker-end="url(#arrowhead20794)" style="fill:none"></path><defs><marker id="arrowhead20794" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="A" transform="translate(680,188.25)" style="opacity: 1;"><rect rx="5" ry="5" x="-660" y="-23" width="1320" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-650,-13)"><foreignObject width="1300" height="26"><div style="display: inline-block; white-space: nowrap;">The three haplotypes of GIGANTEA contribute to fitness differentially in Arabidopsis thaliana when exposed to various stresses.</div></foreignObject></g></g></g><g class="node" id="B" transform="translate(1415.5,43)" style="opacity: 1;"><circle x="-20" y="-23" r="23"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-10,-13)"><foreignObject width="20" height="26"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="C" transform="translate(1895,43)" style="opacity: 1;"><rect rx="5" ry="5" x="-383.5" y="-23" width="767" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-373.5,-13)"><foreignObject width="747" height="26"><div style="display: inline-block; white-space: nowrap;">No fitness benefits from haplotypes of GIGANTEA in non-native background.</div></foreignObject></g></g></g><g class="node" id="R" transform="translate(2543,43)" style="opacity: 1;"><rect rx="5" ry="5" x="-194" y="-23" width="388" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-184,-13)"><foreignObject width="368" height="26"><div style="display: inline-block; white-space: nowrap;">May be regulatory based adaptations.</div></foreignObject></g></g></g><g class="node" id="D" transform="translate(1415.5,237.5)" style="opacity: 1;"><circle x="-25.5" y="-23" r="25.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-15.5,-13)"><foreignObject width="31" height="26"><div style="display: inline-block; white-space: nowrap;">YES</div></foreignObject></g></g></g><g class="node" id="E" transform="translate(1895,237.5)" style="opacity: 1;"><rect rx="5" ry="5" x="-404" y="-23" width="808" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-394,-13)"><foreignObject width="788" height="26"><div style="display: inline-block; white-space: nowrap;">The three haplotypes confer fitness differentially in Populus 717 background.</div></foreignObject></g></g></g><g class="node" id="F" transform="translate(2543,140.25)" style="opacity: 1;"><circle x="-20" y="-23" r="23"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-10,-13)"><foreignObject width="20" height="26"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="G" transform="translate(3513.5,140.25)" style="opacity: 1;"><rect rx="5" ry="5" x="-368" y="-23" width="736" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-358,-13)"><foreignObject width="716" height="26"><div style="display: inline-block; white-space: nowrap;">No fitness benefits from haplotypes of GIGANTEA in similar background.</div></foreignObject></g></g></g><g class="node" id="S" transform="translate(4525,140.25)" style="opacity: 1;"><rect rx="5" ry="5" x="-235" y="-23" width="470" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-225,-13)"><foreignObject width="450" height="26"><div style="display: inline-block; white-space: nowrap;">May be missing other regulatory adaptations.</div></foreignObject></g></g></g><g class="node" id="H" transform="translate(2543,286.75)" style="opacity: 1;"><circle x="-25.5" y="-23" r="25.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-15.5,-13)"><foreignObject width="31" height="26"><div style="display: inline-block; white-space: nowrap;">YES</div></foreignObject></g></g></g><g class="node" id="I" transform="translate(3513.5,286.75)" style="opacity: 1;"><rect rx="5" ry="5" x="-726.5" y="-23" width="1453" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-716.5,-13)"><foreignObject width="1433" height="26"><div style="display: inline-block; white-space: nowrap;">Trends in fitness associated with haplotypes matches stresses associated with population locations across Populus balsamifera species range.</div></foreignObject></g></g></g><g class="node" id="J" transform="translate(4525,237.5)" style="opacity: 1;"><circle x="-20" y="-23" r="23"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-10,-13)"><foreignObject width="20" height="26"><div style="display: inline-block; white-space: nowrap;">NO</div></foreignObject></g></g></g><g class="node" id="K" transform="translate(5255,237.5)" style="opacity: 1;"><rect rx="5" ry="5" x="-317" y="-23" width="634" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-307,-13)"><foreignObject width="614" height="26"><div style="display: inline-block; white-space: nowrap;">Benefits from fitness not aligned with experienced stresses.</div></foreignObject></g></g></g><g class="node" id="T" transform="translate(5898,237.5)" style="opacity: 1;"><rect rx="5" ry="5" x="-148" y="-23" width="296" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-138,-13)"><foreignObject width="276" height="26"><div style="display: inline-block; white-space: nowrap;">May be old adaptive traits.</div></foreignObject></g></g></g><g class="node" id="L" transform="translate(4525,336)" style="opacity: 1;"><circle x="-25.5" y="-23" r="25.5"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-15.5,-13)"><foreignObject width="31" height="26"><div style="display: inline-block; white-space: nowrap;">YES</div></foreignObject></g></g></g><g class="node" id="M" transform="translate(5255,336)" style="opacity: 1;"><rect rx="5" ry="5" x="-445" y="-23" width="890" height="46"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-435,-13)"><foreignObject width="870" height="26"><div style="display: inline-block; white-space: nowrap;">Populus balsamifera is experiencing local adaptation across its native species range.</div></foreignObject></g></g></g></g></g></g></svg></div></div>
 </body>
 </html>
