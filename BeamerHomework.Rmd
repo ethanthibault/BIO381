@@ -1,0 +1,78 @@
+---
+title: "Homework 3: My Sister and Me"
+author: "Ethan Thibault"
+date: "1/31/2018"
+output: 
+  beamer_presentation: 
+    incremental: yes
+---
+
+## Fun on the farm
+
+ \begin{picture}(320,250)
+ \put(65,20){\includegraphics[height=8cm]{IMG_2652.jpg}}
+ \put(00,50){\begin{minipage}[t]{1\linewidth}
+ \end{minipage}}
+ \end{picture}
+ 
+## Similarities
+ 
+My sister and I:
+ 
+- are full of attitude
+- dress for success
+- have good fake smiles
+- look like our dad
+
+## Attitude 
+
+  \begin{picture}(-10,-125)
+ \put(-10,-125){\includegraphics[height=7cm]{IMG_2647.jpg}}
+ \end{picture}
+ 
+  \begin{picture}(170,-105)
+ \put(170,-105){\includegraphics[height=7cm]{IMG_2651.jpg}}
+ \end{picture}
+ 
+ ## Dressing for Success
+ 
+   \begin{picture}(-10,-125)
+ \put(-10,-125){\includegraphics[height=7cm]{IMG_2653.jpg}}
+ \end{picture}
+ 
+  \begin{picture}(170,-105)
+ \put(170,-105){\includegraphics[height=7cm]{IMG_2649.jpg}}
+ \end{picture}
+ 
+ ## Good Fake Smiles
+ 
+  \begin{picture}(320,250)
+ \put(65,20){\includegraphics[height=8cm]{IMG_2623.jpg}}
+ \put(00,50){\begin{minipage}[t]{1\linewidth}
+ \end{minipage}}
+ \end{picture}
+ 
+## Looking like this cool cat
+
+ \begin{picture}(320,250)
+ \put(0,20){\includegraphics[height=8cm]{IMG_2648.jpg}}
+ \put(180,180){\begin{minipage}[t]{0.4\linewidth}
+ {This is our dad dressed up for \color{orange} Halloween \color{black} when he was younger.}
+ \end{minipage}}
+ \end{picture}
+ 
+ ## A day at the beach
+ 
+  \begin{picture}(320,250)
+ \put(85,50){\includegraphics[height=6cm]{IMG_2646.jpg}}
+ \put(87,80){\begin{minipage}[t]{0.4\linewidth}
+ {This is a picture from a family vacation to Wells Beach Maine.}
+ \end{minipage}}
+ \end{picture}
+ 
+ ## Why my sister and I are the coolest kids around
+ 
+ >- We share a mutual \color{green} disgust \color{black} for cleaning the pool
+ >- We love \color{yellow} The Simpsons \color{black}
+ >- We could watch Cody Ko Vines for days
+ 

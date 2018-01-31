@@ -13,7 +13,7 @@ output:
 
 This webpage is a compilation of a semester's worth of work in BIO 381 (Computational Biology). As you move through, you will encounter sequentially, my assignments and anything fun I learn how to do.
 
-<img src="Ethan.jpg" width="200" height="200" />
+<center> <img src="Ethan.jpg" width="200" height="200" /> <center>
 
 #### Ethan Thibault  
 **Office:** Jeffords Hall 324  
@@ -29,7 +29,7 @@ This webpage is a compilation of a semester's worth of work in BIO 381 (Computat
 ## Table of contents of Homework Assignments    
 * [Week 1: Setting up a webpage.](#id-section1)
 * [Week 2: Creating Flowcharts](#id-section2)
-* [Homework 3: ](#id-section3)
+* [Homework 3: Creating a Beamer Presentation](#id-section3)
 * [Homework 4: ](#id-section4)
 * [Homework 5: ](#id-section5)
 * [Homework 6: ](#id-section6) 
@@ -68,12 +68,17 @@ Due:
 
 ------
 <div id='id-section3'/>
-### Week 3: 
+### Week 3: Creating a Beamer Presentation
 
-Due:   
-       
+Due: A beamer presentation with:  
+1. sequential bullet points
+2. simultaneous bullet points
+3. colored text
+4. images
+5. images with captions
+6. images with a caption overlaid (you may need to change the text color for better contrast)
 
-
+[Beamer Presentation](BeamerHomework.pdf)
 
 ------
 <div id='id-section4'/>
