@@ -30,7 +30,7 @@ This webpage is a compilation of a semester's worth of work in BIO 381 (Computat
 * [Week 1: Setting up a webpage.](#id-section1)
 * [Week 2: Creating Flowcharts](#id-section2)
 * [Homework 3: Creating a Beamer Presentation](#id-section3)
-* [Homework 4: ](#id-section4)
+* [Homework 4: Regular Expressions ](#id-section4)
 * [Homework 5: ](#id-section5)
 * [Homework 6: ](#id-section6) 
 * [Homework 7: ](#id-section7)
@@ -82,10 +82,9 @@ Due: A beamer presentation with:
 
 ------
 <div id='id-section4'/>
-### Week 4:    
+### Week 4: Regular Expressions
 
-Due:   
-      
+Due: [Problem Set](Homework4.html)
 
 ------
 <div id='id-section5'/>   

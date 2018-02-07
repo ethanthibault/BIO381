@@ -1,0 +1,178 @@
+---
+title: "Homework 4"
+author: "Ethan Thibault"
+date: "2/7/2018"
+output: html_document
+---
+
+1. Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the value of the variable z and print the value stored in z.
+
+```{r}
+# assign variables
+x <- 1.1
+a <- 2.2
+b <-3.3
+
+# a
+z = x^a^b
+z
+
+# b
+z = (x^a)^b
+z
+
+# c
+z = 3 * x^3 + 2 * x^2 + 1
+z
+
+# d
+c = floor(z)
+d = z - c
+e = d * 10
+z = floor(e)
+z
+```
+
+2. Using the rep and seq functions, create the following vectors:
+
+(1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)
+
+(1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)
+
+(5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)
+
+```{r}
+vec1 = c(seq(from=1,to=8),seq(from=7,to=1))
+vec1
+
+vec2 = rep(x=(seq(from=1,to=5)),times=1:5)
+vec2
+
+vec3 = rep(x=(seq(from=5,to=1)),times=1:5)
+vec3
+```
+
+3. Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of R’s inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you don’t know what polar coordinates are, read about them on the web or in your calculus textbook).
+
+```{r}
+
+vec1=runif(2)
+
+r = sqrt(vec1[1]^2 + vec1[2]^2)
+theta = atan(vec1[2]/vec1[1])
+r
+theta
+```
+
+4. Suppose that queue <- c("sheep", "fox", "owl", "ant") and that queue represents the animals that are lined up to enter Noah’s Ark, with the sheep at the front of the line. Using R expressions, update the queue successively as
+
+- the serpent arrives;
+- the sheep enters the ark;
+- the donkey arrives and talks his way to the front of the line;
+- the serpent gets impatient and leaves;
+- the owl gets bored and leaves;
+- the aphid arrives and the ant invites him to cut in line.
+- finally, determine the position of the aphid in the line.
+
+```{r}
+
+queue <- c("sheep", "fox", "owl", "ant")
+queue
+queue <- c(queue, "serpent")
+queue
+queue <- queue[queue!="sheep"]
+queue
+queue <- c("donkey",queue)
+queue
+queue <- queue[queue!="serpent"]
+queue
+queue <- queue[queue!="owl"]
+queue
+queue <- c(queue[queue!="ant"], "aphid","ant")
+queue
+posAphid <- which(queue=="aphid")
+posAphid
+```
+
+5. Use R to create a vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7.
+
+```{r}
+
+vec1 <- seq(from=1,to=100)
+vec2 <- vec1[(vec1%%2)!=0]
+vec3 <- vec2[(vec2%%3)!=0]
+vec4 <- vec3[(vec3%%7)!=0]
+vec4
+```
+
+6. Create a vector z of 1000 random uniform numbers.
+- create a vector that contains 3 numbers: the proportion of the numbers in z that are less than 0.10, greater than 0.90, and between 0.45 and 0.55.
+- Making successive copies of z, transform your vector of uniform numbers in the following ways:
+  - log (base 10) of z
+  - z2
+  - ez
+  - square root of z
+- for each case calculate your vector of 3 numbers to get the new proportions.
+
+```{r}
+
+z <- runif(1000)
+less <- z[z<0.1]
+more <-z[z>0.9]
+between1 <- z[z>0.45]
+betweenf <- between1[between1<0.55]
+l <- length(less)/1000
+m <- length(more)/1000
+b <- length(betweenf)/1000
+vec1 <- c(l,m,b)
+vec1
+
+z <- runif(1000)
+z <- log10(z)
+less <- z[z<0.1]
+more <-z[z>0.9]
+between1 <- z[z>0.45]
+betweenf <- between1[between1<0.55]
+l <- length(less)/1000
+m <- length(more)/1000
+b <- length(betweenf)/1000
+vec2 <- c(l,m,b)
+vec2
+
+z <- runif(1000)
+z <- z*2
+less <- z[z<0.1]
+more <-z[z>0.9]
+between1 <- z[z>0.45]
+betweenf <- between1[between1<0.55]
+l <- length(less)/1000
+m <- length(more)/1000
+b <- length(betweenf)/1000
+vec3 <- c(l,m,b)
+vec3
+
+z <- runif(1000)
+z <- z*exp(1)
+less <- z[z<0.1]
+more <-z[z>0.9]
+between1 <- z[z>0.45]
+betweenf <- between1[between1<0.55]
+l <- length(less)/1000
+m <- length(more)/1000
+b <- length(betweenf)/1000
+vec4 <- c(l,m,b)
+vec4
+
+z <- runif(1000)
+z <- sqrt(z)
+less <- z[z<0.1]
+more <-z[z>0.9]
+between1 <- z[z>0.45]
+betweenf <- between1[between1<0.55]
+l <- length(less)/1000
+m <- length(more)/1000
+b <- length(betweenf)/1000
+vec5 <- c(l,m,b)
+vec5
+
+```
