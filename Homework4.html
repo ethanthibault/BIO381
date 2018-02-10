@@ -144,9 +144,17 @@ z = 3 * x^3 + 2 * x^2 + 1
 z</code></pre>
 <pre><code>## [1] 7.413</code></pre>
 <pre class="r"><code># d
+
+# Use floor to get the first digit of the value
 c = floor(z)
+
+# Subtract that value to leave you with only the numbers after the decimal point
 d = z - c
+
+# Multiply that number by 10 to move the next digit into the ones place
 e = d * 10
+
+# Get the first digit with with floor again
 z = floor(e)
 z</code></pre>
 <pre><code>## [1] 4</code></pre>
@@ -156,26 +164,31 @@ z</code></pre>
 <p>(1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)</p>
 <p>(1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)</p>
 <p>(5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)</p>
-<pre class="r"><code>vec1 = c(seq(from=1,to=8),seq(from=7,to=1))
+<pre class="r"><code># concatenate two vectors, each made using seq
+vec1 = c(seq(from=1,to=8),seq(from=7,to=1))
 vec1</code></pre>
 <pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
-<pre class="r"><code>vec2 = rep(x=(seq(from=1,to=5)),times=1:5)
+<pre class="r"><code># use rep to repeat elements in a vector and use times to indicate the number of reps per element
+vec2 = rep(x=(seq(from=1,to=5)),times=1:5)
 vec2</code></pre>
 <pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
-<pre class="r"><code>vec3 = rep(x=(seq(from=5,to=1)),times=1:5)
+<pre class="r"><code># use same method as above
+vec3 = rep(x=(seq(from=5,to=1)),times=1:5)
 vec3</code></pre>
 <pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of R’s inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you don’t know what polar coordinates are, read about them on the web or in your calculus textbook).</li>
 </ol>
-<pre class="r"><code>vec1=runif(2)
+<pre class="r"><code># Generate random uniform numbers
+vec1=runif(2)
 
+# use formulas to transform x and y cartesian coordinates into polar coordinates (r and theta)
 r = sqrt(vec1[1]^2 + vec1[2]^2)
 theta = atan(vec1[2]/vec1[1])
 r</code></pre>
-<pre><code>## [1] 0.7866678</code></pre>
+<pre><code>## [1] 0.6083801</code></pre>
 <pre class="r"><code>theta</code></pre>
-<pre><code>## [1] 0.4988173</code></pre>
+<pre><code>## [1] 1.24122</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Suppose that queue &lt;- c(“sheep”, “fox”, “owl”, “ant”) and that queue represents the animals that are lined up to enter Noah’s Ark, with the sheep at the front of the line. Using R expressions, update the queue successively as</li>
 </ol>
@@ -188,36 +201,51 @@ r</code></pre>
 <li>the aphid arrives and the ant invites him to cut in line.</li>
 <li>finally, determine the position of the aphid in the line.</li>
 </ul>
-<pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+<pre class="r"><code># create initial queue by concatinating strings
+queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
 queue</code></pre>
 <pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
-<pre class="r"><code>queue &lt;- c(queue, &quot;serpent&quot;)
+<pre class="r"><code># add serpent
+queue &lt;- c(queue, &quot;serpent&quot;)
 queue</code></pre>
 <pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code>queue &lt;- queue[queue!=&quot;sheep&quot;]
+<pre class="r"><code># remove sheep
+queue &lt;- queue[queue!=&quot;sheep&quot;]
 queue</code></pre>
 <pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code>queue &lt;- c(&quot;donkey&quot;,queue)
+<pre class="r"><code># add donkey to the beginning of the list by concatination
+queue &lt;- c(&quot;donkey&quot;,queue)
 queue</code></pre>
 <pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code>queue &lt;- queue[queue!=&quot;serpent&quot;]
+<pre class="r"><code># remove serpent
+queue &lt;- queue[queue!=&quot;serpent&quot;]
 queue</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
-<pre class="r"><code>queue &lt;- queue[queue!=&quot;owl&quot;]
+<pre class="r"><code># remove owl
+queue &lt;- queue[queue!=&quot;owl&quot;]
 queue</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;ant&quot;</code></pre>
-<pre class="r"><code>queue &lt;- c(queue[queue!=&quot;ant&quot;], &quot;aphid&quot;,&quot;ant&quot;)
+<pre class="r"><code># insert aphid before ant by removing ant from the end of the vector and concatinating aphid and ant on the end of queue
+queue &lt;- c(queue[queue!=&quot;ant&quot;], &quot;aphid&quot;,&quot;ant&quot;)
 queue</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
-<pre class="r"><code>posAphid &lt;- which(queue==&quot;aphid&quot;)
+<pre class="r"><code># get position of aphid with which function
+posAphid &lt;- which(queue==&quot;aphid&quot;)
 posAphid</code></pre>
 <pre><code>## [1] 3</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Use R to create a vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7.</li>
 </ol>
-<pre class="r"><code>vec1 &lt;- seq(from=1,to=100)
+<pre class="r"><code># create vector from 1 to 100
+vec1 &lt;- seq(from=1,to=100)
+
+# remove everything not divisible by 2 (produces a remainder not equal to zero)
 vec2 &lt;- vec1[(vec1%%2)!=0]
+
+# remove everything not divisible by 3 (produces a remainder not equal to zero)
 vec3 &lt;- vec2[(vec2%%3)!=0]
+
+# remove everything not divisible by 7 (produces a remainder not equal to zero)
 vec4 &lt;- vec3[(vec3%%7)!=0]
 vec4</code></pre>
 <pre><code>##  [1]  1  5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79
@@ -234,18 +262,30 @@ vec4</code></pre>
 <li>square root of z</li>
 <li>for each case calculate your vector of 3 numbers to get the new proportions.</li>
 </ul>
-<pre class="r"><code>z &lt;- runif(1000)
+<pre class="r"><code># generate a vector of 1000 random uniform values
+z &lt;- runif(1000)
+
+# put anything less than 0.1 into a vector
 less &lt;- z[z&lt;0.1]
+
+# put anything more than 0.9 into a vector
 more &lt;-z[z&gt;0.9]
+
+# put anything between 0.45 and 0.55 into a vector
 between1 &lt;- z[z&gt;0.45]
 betweenf &lt;- between1[between1&lt;0.55]
+
+# get proportion of each by dividing length by total numbers
 l &lt;- length(less)/1000
 m &lt;- length(more)/1000
 b &lt;- length(betweenf)/1000
+
+# contatinate proportions
 vec1 &lt;- c(l,m,b)
 vec1</code></pre>
-<pre><code>## [1] 0.113 0.088 0.084</code></pre>
-<pre class="r"><code>z &lt;- runif(1000)
+<pre><code>## [1] 0.108 0.102 0.095</code></pre>
+<pre class="r"><code># repeat above four times, but alter random number vector first
+z &lt;- runif(1000)
 z &lt;- log10(z)
 less &lt;- z[z&lt;0.1]
 more &lt;-z[z&gt;0.9]
@@ -268,7 +308,7 @@ m &lt;- length(more)/1000
 b &lt;- length(betweenf)/1000
 vec3 &lt;- c(l,m,b)
 vec3</code></pre>
-<pre><code>## [1] 0.050 0.536 0.050</code></pre>
+<pre><code>## [1] 0.060 0.556 0.051</code></pre>
 <pre class="r"><code>z &lt;- runif(1000)
 z &lt;- z*exp(1)
 less &lt;- z[z&lt;0.1]
@@ -280,7 +320,7 @@ m &lt;- length(more)/1000
 b &lt;- length(betweenf)/1000
 vec4 &lt;- c(l,m,b)
 vec4</code></pre>
-<pre><code>## [1] 0.042 0.660 0.030</code></pre>
+<pre><code>## [1] 0.029 0.669 0.028</code></pre>
 <pre class="r"><code>z &lt;- runif(1000)
 z &lt;- sqrt(z)
 less &lt;- z[z&lt;0.1]
@@ -292,7 +332,7 @@ m &lt;- length(more)/1000
 b &lt;- length(betweenf)/1000
 vec5 &lt;- c(l,m,b)
 vec5</code></pre>
-<pre><code>## [1] 0.008 0.189 0.090</code></pre>
+<pre><code>## [1] 0.007 0.168 0.097</code></pre>
 
 
 

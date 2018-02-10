@@ -21,14 +21,23 @@ z
 z = (x^a)^b
 z
 
+
 # c
 z = 3 * x^3 + 2 * x^2 + 1
 z
 
 # d
+
+# Use floor to get the first digit of the value
 c = floor(z)
+
+# Subtract that value to leave you with only the numbers after the decimal point
 d = z - c
+
+# Multiply that number by 10 to move the next digit into the ones place
 e = d * 10
+
+# Get the first digit with with floor again
 z = floor(e)
 z
 ```
@@ -42,12 +51,16 @@ z
 (5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)
 
 ```{r}
+
+# concatenate two vectors, each made using seq
 vec1 = c(seq(from=1,to=8),seq(from=7,to=1))
 vec1
 
+# use rep to repeat elements in a vector and use times to indicate the number of reps per element
 vec2 = rep(x=(seq(from=1,to=5)),times=1:5)
 vec2
 
+# use same method as above
 vec3 = rep(x=(seq(from=5,to=1)),times=1:5)
 vec3
 ```
@@ -56,8 +69,10 @@ vec3
 
 ```{r}
 
+# Generate random uniform numbers
 vec1=runif(2)
 
+# use formulas to transform x and y cartesian coordinates into polar coordinates (r and theta)
 r = sqrt(vec1[1]^2 + vec1[2]^2)
 theta = atan(vec1[2]/vec1[1])
 r
@@ -76,20 +91,35 @@ theta
 
 ```{r}
 
+# create initial queue by concatinating strings
 queue <- c("sheep", "fox", "owl", "ant")
 queue
+
+# add serpent
 queue <- c(queue, "serpent")
 queue
+
+# remove sheep
 queue <- queue[queue!="sheep"]
 queue
+
+# add donkey to the beginning of the list by concatination
 queue <- c("donkey",queue)
 queue
+
+# remove serpent
 queue <- queue[queue!="serpent"]
 queue
+
+# remove owl
 queue <- queue[queue!="owl"]
 queue
+
+# insert aphid before ant by removing ant from the end of the vector and concatinating aphid and ant on the end of queue
 queue <- c(queue[queue!="ant"], "aphid","ant")
 queue
+
+# get position of aphid with which function
 posAphid <- which(queue=="aphid")
 posAphid
 ```
@@ -98,9 +128,16 @@ posAphid
 
 ```{r}
 
+# create vector from 1 to 100
 vec1 <- seq(from=1,to=100)
+
+# remove everything not divisible by 2 (produces a remainder not equal to zero)
 vec2 <- vec1[(vec1%%2)!=0]
+
+# remove everything not divisible by 3 (produces a remainder not equal to zero)
 vec3 <- vec2[(vec2%%3)!=0]
+
+# remove everything not divisible by 7 (produces a remainder not equal to zero)
 vec4 <- vec3[(vec3%%7)!=0]
 vec4
 ```
@@ -116,17 +153,29 @@ vec4
 
 ```{r}
 
+# generate a vector of 1000 random uniform values
 z <- runif(1000)
+
+# put anything less than 0.1 into a vector
 less <- z[z<0.1]
+
+# put anything more than 0.9 into a vector
 more <-z[z>0.9]
+
+# put anything between 0.45 and 0.55 into a vector
 between1 <- z[z>0.45]
 betweenf <- between1[between1<0.55]
+
+# get proportion of each by dividing length by total numbers
 l <- length(less)/1000
 m <- length(more)/1000
 b <- length(betweenf)/1000
+
+# contatinate proportions
 vec1 <- c(l,m,b)
 vec1
 
+# repeat above four times, but alter random number vector first
 z <- runif(1000)
 z <- log10(z)
 less <- z[z<0.1]
