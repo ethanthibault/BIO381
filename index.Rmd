@@ -90,7 +90,7 @@ Due: [Problem Set](Homework4.html)
 <div id='id-section5'/>   
 ### Week 5: Regular Expressions
 
-Due: [Problem Set](RegularExpressionsHomework5.md)
+Due: [Problem Set](RegularExpressionsHomework5.html)
    
  
 ------

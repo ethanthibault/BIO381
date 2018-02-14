@@ -1,0 +1,174 @@
+---
+title: "Homework 5"
+author: "Ethan Thibault"
+date: "2/14/2018"
+output: html_document
+---
+
+## Problems:
+
+### One
+
+#### Starting
+
+First String    Second      1.22      3.4
+
+Second          More Text   1.555555  2.2220
+
+Third           x           3         124
+
+#### Regular Expression
+
+I identify anything with two or more spaces and replace it with a comma
+
+`\s{2,}`
+
+`,`
+
+#### Final
+
+First String,Second,1.2,3.4
+
+Second,More Text,1.55555,2.2220
+
+Third,x3,124
+
+### Two
+
+#### Starting
+
+Ballif, Bryan, University of Vermont
+
+Ellison, Aaron, Harvard Forest
+
+Record, Sydne, Bryn Mawr
+
+#### Regular Expression
+
+I identify the first name followed by a comma, the space, the second name and the comma an then the space and everything else. Then by grouping the parts, I can order them in the replace section.
+
+`(\w*),\s(\w*),\s(.*)`
+
+`\2 \1 (\3)`
+
+#### Final
+
+Bryan Ballif (University of Vermont)
+
+Aaron Ellison (Harvard Forest)
+
+Sydne Record (Bryn Mawr)
+
+### Three-one
+
+#### Starting
+
+0001 Georgia Horseshoe.mp3 0002 Billy In The Lowground.mp3 0003 Cherokee Shuffle.mp3 0004 Walking Cane.mp3
+
+#### Regular Expression
+
+Here I identify the space and the four digit number, select the four digit number, then replace that with a linebreak and re put in the number
+
+`\s(\d{4})`
+
+`\n\1`
+
+#### Final
+
+0001 Georgia Horseshoe.mp3
+
+0002 Billy In The Lowground.mp3
+
+0003 Cherokee Shuffle.mp3
+
+0004 Walking Cane.mp3
+
+### Three-two
+
+#### Starting
+
+0001 Georgia Horseshoe.mp3
+
+0002 Billy In The Lowground.mp3
+
+0003 Cherokee Shuffle.mp3
+
+0004 Walking Cane.mp3
+
+#### Regular Expression
+
+Here I identify and select the number, then a space, then everything else up to .mp3. Then I reorder.
+
+`(\d{4})\s(.*)(\.mp3)`
+
+`\2_\1\3`
+
+#### Final
+
+Georgia Horseshoe_0001.mp3
+
+Billy In The Lowground_0002.mp3
+
+Cherokee Shuffle_0003.mp3
+
+Walking Cane_0004.mp3
+
+### Four-one
+
+#### Starting
+
+Camponotus,pennsylvanicus,10.2,44
+
+Camponotus,herculeanus,10.5,3
+
+Myrmica,punctiventris,12.2,4
+
+Lasius,neoniger,3.3,55
+
+#### Regular Expression
+
+Here I split it up by words and numbers, adding commas where necessary, then I reorder.
+
+`(\w)\w*,(\w*,)\d*\.\d*,(\d*)`
+
+`\1_\2\3`
+
+#### Final
+
+C_pennsylvanicus,44
+
+C_herculeanus,3
+
+M_punctiventris,4
+
+L_neoniger,55
+
+### Four-two
+
+#### Starting
+
+Camponotus,pennsylvanicus,10.2,44
+
+Camponotus,herculeanus,10.5,3
+
+Myrmica,punctiventris,12.2,4
+
+Lasius,neoniger,3.3,55
+
+#### Regular Expression
+
+Here I do the same thing as above but identify that I only want four characters.
+
+`(\w)\w*,(\w{4})\w*,\d*\.\d*,(\d*)`
+
+`\1_\2,\3`
+
+#### Final
+
+C_penn,44
+
+C_herc,3
+
+M_punc,4
+
+L_neon,55
