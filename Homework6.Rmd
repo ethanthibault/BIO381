@@ -157,3 +157,4 @@ p1 + stat4
 
 ```
 
+Why are there differences between the simulated and the real data? My best answer is that nature doesn't necessarily conform to perfect distributions that we create. There are also random numbers being created through rgamma so it will be different.
