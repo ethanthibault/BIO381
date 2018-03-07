@@ -101,7 +101,13 @@ Due: [Problem Set](Homework6.html)
 
 ------
 <div id='id-section7'/>
-### Week 7: 
+### Week 7: Creating Fake Data Sets To Explore Hypotheses
+
+Here I am making functions that will model my data.
+
+This is a combination of two weeks of work
+
+Due: [Hypotheses Exploration](Homework7.html)
 
 
 ------

@@ -1,0 +1,406 @@
+---
+title: "Homework 7"
+author: "Ethan Thibault"
+date: "2/28/2018"
+output: html_document
+---
+
+This is my homework 6 where I am making a fake data set to explore one of my hypotheses.
+
+I am going to tackle the hypothesis that the various haplotypes of GI will confer differences in stress tolerance (in this case, specifically electrolyte leakage that is a proxy for cold tolerance).
+
+I will have three treatments, GI1, GI2, and GI3 and a control, AtGI. These are the independent variables the dependent variable is percent electrolyte leakage. From the literature, for non cold acclimated *Arabidopsis thaliana* plants, wild type, typically shows 50% leakage at -3C. Other means at -3C include 10%, 30%, and 60%. In the real experiment I would test multiple temperatures, but for this homework assignment I will have my four treatments at one temperature. The typical standard deviation also appears to be around 5 to 10 for most treatments, whether they are wild type or transgenic. From discussions in class, it became clear that 10 independent replicates will be important.
+
+```{r}
+setwd("~/Documents/UVM_2018/BIO381")
+library(ggplot2)
+
+# Here I am going to create a function that will create a normal distribution based on parameters I gathered from the literature about my experiment
+
+dataCreate <- function(mean1=10,mean2=40,mean3=60,n1=10,n2=10,n3=10,sd1=10,sd2=10,sd3=10){
+  mydf <- data.frame(GI1=rnorm(mean=mean1,n=n1,sd=sd1), GI2=rnorm(mean=mean2,n=n2,sd=sd2), GI3=rnorm(mean=mean3,n=n3,sd=sd3))
+  return(mydf)
+}
+myDF <- dataCreate()
+myDF
+
+str(myDF)
+
+# Convert dataframe into a usable form for ANOVA
+
+library(reshape2)
+myDF2 <- melt(myDF)
+
+myDF2
+
+# Now I am going to run an ANOVA on the dataframe to see if there is significance
+
+ANO <- aov(value~variable,data=myDF2)
+print(ANO)
+summary(ANO)[[1]][["Pr(>F)"]][1]
+str(summary(ANO))
+
+
+# Plot the data to visualize
+
+ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+
+print(ANOPlot)
+
+```
+
+Here are the ANOVA results from a few iterations of my function:
+
+```{r}
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# variable     2  14277    7139   44.52 2.83e-09 ***
+# Residuals   27   4330     160                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# variable     2  11847    5923   60.38 1.08e-10 ***
+# Residuals   27   2649      98                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# variable     2  10688    5344   33.06 5.52e-08 ***
+# Residuals   27   4365     162                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+We are really interested in whether of not the different GI transformants had different percentages of electrolyte leakage and so all I care is that there is as least a significant difference between two treatments. All of these have strong statistical p-values and I ran them with the large end of the errors seen in the literature, so I am going to try running this with decreased sample sizes similar to the literature (2-4 replicates per group)
+
+```{r}
+
+myDF <- dataCreate(n1=3,n2=3,n3=3)
+myDF
+
+str(myDF)
+
+# Convert dataframe into a usable form for ANOVA
+
+library(reshape2)
+myDF2 <- melt(myDF)
+
+myDF2
+
+# Now I am going to run an ANOVA on the dataframe to see if there is significance
+
+ANO <- aov(value~variable,data=myDF2)
+print(ANO)
+summary(ANO)
+
+# Plot the data to visualize
+
+ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+print(ANOPlot)
+
+```
+
+Here are a few summaries of the output ANOVAs:
+
+```{r}
+#             Df Sum Sq Mean Sq F value  Pr(>F)   
+# variable     2   2263  1131.5   20.39 0.00211 **
+# Residuals    6    333    55.5                   
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# variable     2   3660  1829.9   63.31 9.26e-05 ***
+# Residuals    6    173    28.9                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value  Pr(>F)   
+# variable     2   4906  2453.2   14.67 0.00489 **
+# Residuals    6   1003   167.2                   
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+I am still seeing significant p-values, but they are not quite as strong. I will now try with 3 and 10 replicates per treatment, but with means that are closer together.
+
+```{r}
+
+myDF <- dataCreate(n1=3,n2=3,n3=3,mean1 = 30,mean2 = 40,mean3 = 50)
+myDF
+
+str(myDF)
+
+# Convert dataframe into a usable form for ANOVA
+
+library(reshape2)
+myDF2 <- melt(myDF)
+
+myDF2
+
+# Now I am going to run an ANOVA on the dataframe to see if there is significance
+
+ANO <- aov(value~variable,data=myDF2)
+print(ANO)
+summary(ANO)
+
+# Plot the data to visualize
+
+ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+print(ANOPlot)
+
+```
+
+Here are a few summaries of the output ANOVAs:
+
+```{r}
+
+#             Df Sum Sq Mean Sq F value Pr(>F)  
+# variable     2 1329.9   664.9   5.731 0.0406 *
+# Residuals    6  696.2   116.0                 
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value Pr(>F)  
+# variable     2  525.0  262.49   3.632 0.0926 .
+# Residuals    6  433.7   72.28                 
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value Pr(>F)  
+# variable     2  404.8  202.38   3.555 0.0959 .
+# Residuals    6  341.6   56.93                 
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+```
+
+Here I am changing the means and using 10 for the replicates
+
+```{r}
+
+myDF <- dataCreate(n1=10,n2=10,n3=10,mean1 = 30,mean2 = 40,mean3 = 50)
+myDF
+
+str(myDF)
+
+# Convert dataframe into a usable form for ANOVA
+
+library(reshape2)
+myDF2 <- melt(myDF)
+
+myDF2
+
+# Now I am going to run an ANOVA on the dataframe to see if there is significance
+
+ANO <- aov(value~variable,data=myDF2)
+print(ANO)
+summary(ANO)
+
+# Plot the data to visualize
+
+ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+print(ANOPlot)
+
+```
+
+Here are a few summaries of the output ANOVAs:
+
+```{r}
+
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# variable     2   3359  1679.5    14.4 5.54e-05 ***
+# Residuals   27   3148   116.6                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# variable     2   2228  1114.1      16 2.61e-05 ***
+# Residuals   27   1880    69.6                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value Pr(>F)  
+# variable     2  603.5  301.73   3.474 0.0454 *
+# Residuals   27 2345.2   86.86                 
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+```
+
+What this tells me:
+
+I could use 3 replicates and get significant data if the means are fairly spread apart. Due to the way that we are doing this experiment, I am more inclined to think that the means will be closer together so to maximize the chance of getting significant data, I should use 10 replicates. This is ten per temperature treatment which would end up being around 110 plants (testing 10 different temperatures for electrolyte leakage). 
+
+I think I will check other replicate numbers between 3 and 10 to hopefully decrease the number of replicates because it will be difficult to generate these mutants and as of now they produce very few seeds.
+
+---
+
+This is the start of the second lab day working on this assignment.
+
+```{r}
+myDF <- dataCreate(n1=5,n2=5,n3=5,mean1 = 30,mean2 = 40,mean3 = 50)
+myDF
+
+str(myDF)
+
+# Convert dataframe into a usable form for ANOVA
+
+library(reshape2)
+myDF2 <- melt(myDF)
+
+myDF2
+
+# Now I am going to run an ANOVA on the dataframe to see if there is significance
+
+ANO <- aov(value~variable,data=myDF2)
+print(ANO)
+summary(ANO)
+
+# Plot the data to visualize
+
+ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+print(ANOPlot)
+
+```
+
+Here are a few summaries of the ANOVAs
+
+```{r}
+#             Df Sum Sq Mean Sq F value Pr(>F)
+# variable     2  236.6  118.32   1.246  0.322
+# Residuals   12 1139.8   94.98         
+# 
+#             Df Sum Sq Mean Sq F value Pr(>F)
+# variable     2  441.4   220.7   1.531  0.256
+# Residuals   12 1729.7   144.1       
+# 
+#             Df Sum Sq Mean Sq F value  Pr(>F)   
+# variable     2   1599   799.4   8.084 0.00598 **
+# Residuals   12   1187    98.9                   
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+That time, only one was significant.
+
+Now let me try 7 individuals.
+
+```{r}
+myDF <- dataCreate(n1=7,n2=7,n3=7,mean1 = 30,mean2 = 40,mean3 = 50)
+myDF
+
+str(myDF)
+
+# Convert dataframe into a usable form for ANOVA
+
+library(reshape2)
+myDF2 <- melt(myDF)
+
+myDF2
+
+# Now I am going to run an ANOVA on the dataframe to see if there is significance
+
+ANO <- aov(value~variable,data=myDF2)
+print(ANO)
+summary(ANO)
+
+# Plot the data to visualize
+
+ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+print(ANOPlot)
+```
+
+Here are a few summary results from the ANOVAs
+
+```{r}
+#             Df Sum Sq Mean Sq F value  Pr(>F)   
+# variable     2   1174   586.8   8.887 0.00207 **
+# Residuals   18   1188    66.0                   
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value Pr(>F)  
+# variable     2  858.8   429.4   4.979  0.019 *
+# Residuals   18 1552.3    86.2                 
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+#             Df Sum Sq Mean Sq F value  Pr(>F)   
+# variable     2   1156   577.7   9.183 0.00178 **
+# Residuals   18   1132    62.9                   
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+All of those are significant so seven individuals per treatment seem reasonable if the means are 10 percentage points apart and have sd's of 10.
+
+To practice making functions, I am going to make a function that runs ANOVAs on the data produced by the dataCreate, and then a function that will run the dataCreate function and the ANOVA 10 times and return the summaries for all. We also know how to annotate a function now too, so instead of changing what I did last week, I will annotate the new functions I make.
+
+Here is the ANOVA function
+
+```{r}
+###################################################
+# FUNCTION: ANOVA
+# Runs an ANOVA on a dataframe of values
+# input: dataframe
+# output: summary of ANOVA
+ANOVA <- function(data=as.data.frame(matrix(data=1:12,nrow=4))){
+  library(reshape2)
+  myDF2 <- melt(myDF)
+  ANO <- aov(value~variable,data=myDF2)
+  return(summary(ANO))
+}
+###################################################
+ANOVA()
+
+```
+
+Now here is a function to run it 10 times
+
+```{r,message=FALSE}
+# First run both functions
+dataCreate <- function(mean1=10,mean2=40,mean3=60,n1=10,n2=10,n3=10,sd1=10,sd2=10,sd3=10){
+  mydf <- data.frame(GI1=rnorm(mean=mean1,n=n1,sd=sd1), GI2=rnorm(mean=mean2,n=n2,sd=sd2), GI3=rnorm(mean=mean3,n=n3,sd=sd3))
+  return(mydf)
+}
+ANOVA <- function(data=as.data.frame(matrix(data=1:12,nrow=4))){
+  library(reshape2)
+  suppressMessages(expr = myDF2 <- melt(data))
+  ANO <- aov(value~variable,data=myDF2)
+  return(summary(ANO))
+}
+
+###################################################
+# FUNCTION: simulation
+# Creates 10 distributions of data, runs and ANOVA on each
+# input: parameters for distributions and the number of simulations
+# output: summary of ANOVAs
+simulation <- function(mean1=10,mean2=40,mean3=60,n1=10,n2=10,n3=10,sd1=10,sd2=10,sd3=10,nsim=1000){
+  results <- vector()
+  for(i in 1:nsim){
+    mydf <- dataCreate(mean1=mean1,mean2=mean2,mean3=mean3,n1=n1,n2=n2,n3=n3,sd1=sd1,sd2=sd2,sd3=sd3)
+    anosum <- ANOVA(data=mydf)
+    anosumpval <- anosum[[1]][["Pr(>F)"]][1]
+    results <- c(results, anosumpval)
+  }
+  sigpval <- sum(results <= 0.05)
+  return(sigpval)
+}
+###################################################
+
+```
+
+Run some that will produce less than 10 significant pvalues. It requires suppress expressions in the ANOVA function to stop the warning message each time you run melt.
+
+```{r,message=FALSE}
+simulation(n1=5,n2=5,n3=5,mean1 = 30,mean2 = 40,mean3 = 50)
+```
+
+Spits out (at least this time when I run it) 6 times where the output was significant.
