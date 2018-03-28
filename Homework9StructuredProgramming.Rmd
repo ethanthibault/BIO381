@@ -1,0 +1,176 @@
+---
+title: "Homework 9 Structured Programming"
+author: "Ethan Thibault"
+date: "3/21/2018"
+output: html_document
+---
+
+Here is my homework 9 where I will practice structured programming in R.
+
+Structured programming starts by defining all functions at the beginning of the file.
+
+```{r}
+# Global variables: create global variables that can be used throughout the code
+initialMeanOne <- 10
+initialMeanTwo <- 40
+initialMeanThree <- 60
+initialNOne <- 10
+initialNTwo <- 10
+initialNThree <- 10
+initialSdOne <- 10
+initialSdTwo <- 10
+initialSdThree <- 10
+inidialDf <- as.data.frame(matrix(data=1:12,nrow=4))
+initialNsim <- 1000
+pvalThreshold <- 0.05
+initialMeanRangeOne <- 5:15
+initialMeanRangeTwo <- 35:45
+initialMeanRangeThree <- 55:65
+
+# Preliminaries: start by installing and loading all packages and libraries.
+library(ggplot2)
+library(reshape2)
+
+# Functions: define all functions used in the file.
+
+###################################
+# Function: dataCreate
+# Generates a random normal distribution for three treatments
+# input: three mean values
+# input: three sample size values
+# input: three standard deviation values
+# output: dataframe of random normal distributions based off input parameters
+#---------------------------------
+dataCreate <- function(mean1=initialMeanOne,mean2=initialMeanTwo,mean3=initialMeanThree,n1=initialNOne,n2=initialNTwo,n3=initialNThree,sd1=initialSdOne,sd2=initialSdTwo,sd3=initialSdThree){
+  mydf <- data.frame(GI1=rnorm(mean=mean1,n=n1,sd=sd1), GI2=rnorm(mean=mean2,n=n2,sd=sd2), GI3=rnorm(mean=mean3,n=n3,sd=sd3))
+  return(mydf)
+}
+###################################
+
+###################################
+# FUNCTION: ANOVAsum
+# Runs an ANOVA on a dataframe of values
+# input: dataframe
+# output: summary of ANOVA
+ANOVAsum <- function(data=df){
+  suppressMessages(expr = df2 <- melt(data))
+  ANO <- aov(value~variable,data=df2)
+  return(summary(ANO))
+}
+###################################
+
+###################################
+# FUNCTION: ANOVA
+# Runs an ANOVA on a dataframe of values
+# input: dataframe
+# output: ANOVA
+ANOVA <- function(data=df){
+  suppressMessages(expr = df2 <- melt(data))
+  ANO <- aov(value~variable,data=df2)
+  return(ANO)
+}
+###################################
+
+###################################
+# FUNCTION: ANOPlot
+# Plots data from ANOVA
+# input: dataframe
+# input: x name
+# input: y name
+# input: number of simulations
+# output: number of significant p values
+ANOPlot <- function(data) {
+  plot <- ggplot(data=data,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+  return(plot)
+}
+###################################
+
+###################################
+# FUNCTION: simulation
+# Reports number of significant p values for n random normal distributions for three treatments
+# input: three mean values
+# input: three sample size values
+# input: three standard deviation values
+# input: number of simulations
+# output: number of significant p values
+simulation <- function(mean1=initialMeanOne,mean2=initialMeanTwo,mean3=initialMeanThree,n1=initialNOne,n2=initialNTwo,n3=initialNThree,sd1=initialSdOne,sd2=initialSdTwo,sd3=initialSdThree,nsim=initialNsim){
+  results <- vector()
+  for(i in 1:nsim){
+    mydf <- dataCreate(mean1=mean1,mean2=mean2,mean3=mean3,n1=n1,n2=n2,n3=n3,sd1=sd1,sd2=sd2,sd3=sd3)
+    anosum <- ANOVAsum(data=mydf)
+    anosumpval <- anosum[[1]][["Pr(>F)"]][1]
+    results[i] <- anosumpval
+  }
+  sigpval <- sum(results <= pvalThreshold)
+  return(sigpval)
+}
+###################################
+
+###################################
+# FUNCTION: singlePval
+# Reports p value for a random normal distributions for three treatments
+# input: three mean values
+# input: three sample size values
+# input: three standard deviation values
+# input: number of simulations
+# output: p value
+singlePval <- function(mean1=initialMeanOne,mean2=initialMeanTwo,mean3=initialMeanThree,n1=initialNOne,n2=initialNTwo,n3=initialNThree,sd1=initialSdOne,sd2=initialSdTwo,sd3=initialSdThree){
+  mydf <- dataCreate(mean1=mean1,mean2=mean2,mean3=mean3,n1=n1,n2=n2,n3=n3,sd1=sd1,sd2=sd2,sd3=sd3)
+  anosum <- ANOVAsum(data=mydf)
+  anosumpval <- anosum[[1]][["Pr(>F)"]][1]
+  return(anosumpval)
+}
+###################################
+
+###################################
+# FUNCTION: meanChanger
+# Runs simulation with many different mean combinations for the three treatments
+# input: Range of means as a vector for the three groups
+# output: matrix with all combinations of means that produce a significan pvalue
+meanChanger <- function(meanRangeOne=initialMeanRangeOne,meanRangeTwo=initialMeanRangeTwo,meanRangeThree=initialMeanRangeThree) {
+  counter <- 1
+  combination <- vector()
+  pvals <- vector()
+  for (j in meanRangeOne) {
+    for (k in meanRangeTwo) {
+      for (l in meanRangeThree) {
+        pvalue <- singlePval(mean1 = j,mean2 = k,mean3 = l)
+        combination[counter] <- paste(j,k,l,sep = ",")
+        pvals[counter] <- pvalue
+        counter <- counter + 1
+      }
+    }
+  }
+  matrix <- cbind(combination,pvals)
+  signifpvalmatrix <- subset(matrix, matrix[,2] <= 0.05)
+  return(signifpvalmatrix)
+}
+```
+
+Next I am going to run the functions to see how they work.
+
+```{r}
+# Run the functions with default variables that almost always give 100% significant p values
+
+# Daisy chain them and also plot the one ANOVA that ran
+ANOPlot(ANOVA(dataCreate()))
+
+# Run simulation function to do the above 1000 times but without plotting them.
+simulation()
+
+# Run simulation function but with means that won't only give me significant p values
+simulation(mean1 = 35, mean2 = 40,mean3 = 45)
+
+# Run meanChanger with the default values
+r <- meanChanger(meanRangeOne = 25:30,meanRangeTwo = 35:40, meanRangeThree = 45:50)
+head(r)
+nrow(r)
+
+# Run mean changer with means that won't give me only siginificant pvalues
+rr <- meanChanger(meanRangeOne = 10:20,meanRangeTwo = 20:30,meanRangeThree = 30:40)
+head(rr)
+nrow(rr)
+
+```
+

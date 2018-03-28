@@ -95,7 +95,7 @@ print(ANO)
 summary(ANO)
 
 # Plot the data to visualize
-
+ANOPlot(myDF2)
 ANOPlot <- ggplot(data=myDF2,aes(x=variable,y=value,fill=variable)) + 
                     geom_boxplot()
 print(ANOPlot)
@@ -404,3 +404,25 @@ simulation(n1=5,n2=5,n3=5,mean1 = 30,mean2 = 40,mean3 = 50)
 ```
 
 Spits out (at least this time when I run it) 6 times where the output was significant.
+
+I realized that I never created a function for plotting so I will do that down here.
+
+```{r}
+###################################
+# FUNCTION: ANOPlot
+# Plots data from ANOVA
+# input: dataframe
+# input: x name
+# input: y name
+# input: number of simulations
+# output: number of significant p values
+ANOPlot <- function(data) {
+  plot <- ggplot(data=data,aes(x=variable,y=value,fill=variable)) + 
+                    geom_boxplot()
+  return(plot)
+}
+###################################
+
+
+```
+

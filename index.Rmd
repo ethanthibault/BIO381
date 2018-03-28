@@ -112,9 +112,10 @@ Due: [Hypotheses Exploration](Homework7.html)
 
 ------
 <div id='id-section8'/>
-### Week 8:  
+### Week 8:  Homework 10: Batch processing (continued)
 
-Due:   
+
+[Link](Homework10.html) to Homework 10   
    
 
 ------

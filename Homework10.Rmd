@@ -1,0 +1,171 @@
+---
+title: "Homework10"
+author: "Ethan Thibault"
+date: "3/28/2018"
+output: html_document
+---
+
+```{r,message=FALSE,warning=FALSE}
+# Basic code for batch processing 
+# 27 March 2018
+# EAT
+
+setwd("~/Documents/UVM_2018/FirstProject")
+
+###################################
+# Function: FileBuilder
+# Create a set of random files for regression
+# input: fileN = number of files
+#      : fileFolder = name of folder for random files
+#      : fileSize = c(min,max) number of rows in file
+#      : fileNA = number on average of NA per column
+# output: set of random files
+#---------------------------------
+FileBuilder <- function(fileN=10,fileFolder="RandomFiles/",fileSize=c(15,100),fileNA=3) {
+  for (i in seq_len(fileN)) {
+    fileLength <- sample(fileSize[1]:fileSize[2],size=1)
+    varX <- runif(fileLength) # random x values
+    varY <- runif(fileLength) # random y values
+    dF <- data.frame(varX,varY) # bind to data frame
+    badVals <- rpois(n=1,lambda = fileNA) # number of NA
+    dF[sample(nrow(dF),size=badVals),1] <- NA
+    dF[sample(nrow(dF),size=badVals),2] <- NA
+    
+    # Create a consecutive file name for this data frame
+    fileLabel <- paste(fileFolder, "ranFile",formatC(i,width=3,format="d",flag="0"),".csv",sep="")
+    # set up data file and incorporate time stamp and minimal metadata
+    write.table(cat("# Simulated random data file ", "for batch processing", "\n", "# timestamp: ", as.character(Sys.time()), "\n", "# EAT", "\n", "# --------------------", "\n", "\n", file=fileLabel, row.names="",col.names="", sep=""))
+    # add the data frame now
+    write.table(x=dF,file=fileLabel,sep=",",row.names=FALSE, append=TRUE)
+  }
+}
+# forward slash is important to give it a place in the directory
+
+###################################
+# Function: regStats
+# fil linear model, get regression stats
+# input: 2-column data frame
+# output: slope, p-value,r^2
+#---------------------------------
+regStats <- function(d=NULL) {
+  if(is.null(d)) {
+    xVar <- runif(10)
+    yVar <- runif(10)
+    d <- data.frame(xVar,yVar)
+  }
+  . <- lm(data=d,d[,2]~d[,1])
+  . <- summary(.)
+  statsList <- list(Slope=.$coefficients[2,1], pVal=.$coefficients[2,4], r2=.$r.squared)
+  return(statsList)
+} 
+
+# --------------------------------------------------------
+# Start of body of program
+library(TeachingDemos)
+char2seed("Freezing March")
+
+# --------------------------------------------------------
+# Global variables
+fileFolder <- "RandomFiles/"
+nFiles <- 100
+fileOut <- "StatsSummary.csv"
+
+# Create 100 random data
+FileBuilder(fileN=nFiles)
+
+# obtain a list of file names
+fileNames <- list.files(path=fileFolder)
+
+# Create data frame to hold file summary statistics
+ID <- seq_along(fileNames)
+fileName <- fileNames
+slope <- rep(NA,nFiles)
+pVal <- rep(NA,nFiles)
+r2 <- rep(NA,nFiles)
+
+# To add the two extra columns, I need to make two empty columns in the data set and add the to the statsOut data frame
+nRowPreClean <- rep(NA,nFiles)
+nRowPostClean <- rep(NA,nFiles)
+
+statsOut <- data.frame(ID,fileName,slope,pVal,r2,nRowPreClean,nRowPostClean)
+
+# batch process by looping thorugh individual files
+for (i in seq_along(fileNames)) {
+  data <- read.table(file=paste(fileFolder,fileNames[i],sep=""), sep=",",header=T)
+  preCleanRows <- nrow(data) # get the number of rows in data before cleaning out NAs
+  dClean <- data[complete.cases(data),] # get clean cases
+  postCleanRows <- nrow(dClean) # get the number of rows in data after cleaning out NAs
+  . <- regStats(dClean) # pull out regression stats from clean file
+  statsOut[i,3:5] <- unlist(.) # unlist, copy into last three columns
+  statsOut[i,6] <- preCleanRows
+  statsOut[i,7] <- postCleanRows
+}
+
+# set up output file and incorporate time stamp and minimal metadata
+write.table(cat("# Summary stats for batch processing of regression models","\n","# timestamp: ",as.character(Sys.time()),"\n","# EAT","\n","#--------------------------","\n","\n",file=fileOut,row.names="",col.names="",sep=""))
+
+# now add the data frame
+write.table(x=statsOut,file=fileOut,row.names=F,col.names=T,sep=",",append=T)
+
+# --------------------------------------------------------------------------------------
+
+# Now I need to change the script to make there be an error in the regStats fuction
+
+# nFiles <- 100
+# fileFolder <- "RandomFiles/"
+# fileOut <- "StatsSummary.csv"
+# sizeFile <- c(15,50)
+# lambda <- 10
+# FileBuilder(fileN=nFiles,fileSize = sizeFile,fileNA = lambda)
+
+# could not build files with lambda of 25
+# could not build files with lambda of 20
+# could not build files with lambda of 15
+# could make files with lambda of 10, however could not run the linear model. I got the following error:
+#     Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...) : 
+#     0 (non-NA) cases 
+# This tells me that it could build the files because there were never more NAs than the number of rows in the file, but when it tried to run the linear model, it couldn't because there were some files with 100% NA values.
+
+# obtain a list of file names
+# fileNames <- list.files(path=fileFolder)
+
+# Create data frame to hold file summary statistics
+# ID <- seq_along(fileNames)
+# fileName <- fileNames
+# slope <- rep(NA,nFiles)
+# pVal <- rep(NA,nFiles)
+# r2 <- rep(NA,nFiles)
+
+# To add the two extra columns, I need to make two empty columns in the data set and add the to the statsOut data frame
+# nRowPreClean <- rep(NA,nFiles)
+# nRowPostClean <- rep(NA,nFiles)
+
+# statsOut <- data.frame(ID,fileName,slope,pVal,r2,nRowPreClean,nRowPostClean)
+
+# batch process by looping thorugh individual files
+# for (i in seq_along(fileNames)) {
+#   data <- read.table(file=paste(fileFolder,fileNames[i],sep=""), sep=",",header=T)
+#   preCleanRows <- nrow(data) # get the number of rows in data before cleaning out NAs
+#   dClean <- data[complete.cases(data),] # get clean cases
+#   postCleanRows <- nrow(dClean) # get the number of rows in data after cleaning out NAs
+#   . <- regStats(dClean) # pull out regression stats from clean file
+#   statsOut[i,3:5] <- unlist(.) # unlist, copy into last three columns
+#   statsOut[i,6] <- preCleanRows
+#   statsOut[i,7] <- postCleanRows
+# }
+
+# --------------------------------------------------------------------------------------
+
+# To add the sample sizes (two extra columns) I first added the two columns to the data frame
+#     nRowPreClean <- rep(NA,nFiles)
+#     nRowPostClean <- rep(NA,nFiles)
+
+# Next I extracted the number of rows from each file in the for loop:
+#     preCleanRows <- nrow(data)
+#     postCleanRows <- nrow(dClean)
+
+# Then within the same loop I added these values into the 6 and 7 columns of statsOut
+#     statsOut[i,6] <- preCleanRows
+#     statsOut[i,7] <- postCleanRows
+```
+
