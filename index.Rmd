@@ -126,7 +126,9 @@ Due:
 
 ------
 <div id='id-section10'/>
-### Week 10:    
+### Week 10: Homework 12: ggplot
+
+Here is a link to my [homework 12](Homework12.html)
 
 
 ------
