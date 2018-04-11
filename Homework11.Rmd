@@ -1,0 +1,137 @@
+---
+title: "Homework 12"
+author: "Ethan Thibault"
+date: "4/11/2018"
+output: html_document
+---
+
+Here is Homework 11
+
+```{r}
+# Preliminaries
+library(ggplot2)
+library(lme4)
+library(lmerTest)
+library(ggthemes)
+
+
+# First I need to read in my dataset (I am going to copy in some code from my own code that will bring in a file and alter it into usable data)
+
+setwd("~/Documents/UVM_2018/BIO381")
+
+#+++++++++++++++++++++++++
+# Function to calculate the mean and the standard deviation
+# for each group
+#+++++++++++++++++++++++++
+# data : a data frame
+# varname : the name of a column containing the variable
+#to be summariezed
+# groupnames : vector of column names to be used as
+# grouping variables
+data_summary <- function(data, varname, groupnames){
+  require(plyr)
+  summary_func <- function(x, col){
+    c(mean = mean(x[[col]], na.rm=TRUE),
+      sd = sd(x[[col]], na.rm=TRUE))
+  }
+  data_sum<-ddply(data, groupnames, .fun=summary_func,
+                  varname)
+  data_sum <- rename(data_sum, c("mean" = varname))
+  return(data_sum)
+}
+
+chill <- read.csv("ChillingExpt.csv", header=T)
+str(chill)
+
+subtractor <- c(0,0,5,12,19,26,33,40,47,54,61,68,75)
+
+# create a for loop that will subract the correct value from each column
+for (i in 3:13) {
+  chill[,i] <- chill[,i] - subtractor[i]
+}
+  
+summary(chill)  
+
+chill2 <- reshape(chill, varying=3:13, sep="_", direction="long")
+str(chill2)
+
+summary(chill2)
+head(chill2)
+
+with(chill2, plot(time, JulBF))
+# There is a bump in Jul days to BF at about 6 weeks of chilling. We determined that this is most likely due to the malfunctioning growth chamber that occurred a few days after week 6 was planted. We believe the interrupted 24 hour light (by 4 hours of darkness) is giving us this bump.
+chill3 <- data_summary(chill2, varname="JulBF", 
+                    groupnames=c("time","ind_code"))
+
+# chill3 is now in the long format with means and standard deviations
+
+#-----------------------------------------------------------------------
+# the code that follows will now be what I do in class for the homework assignment
+
+# Here is a basic plot
+p1 <- ggplot(data=chill3, mapping = aes(x=time,y=JulBF)) + geom_point()
+print(p1)
+# Now I will try adding themes found in ggthemes
+p1 + theme_pander()
+p1 + theme_hc()
+p1 + theme_calc()
+p1 + theme_stata()
+p1 + theme_tufte()
+p1 + theme_wsj()
+# ooh i like that one...
+p1 + theme_wsj(base_size = 10,base_family = "serif")
+
+# Now I want to add the individuals to my plot
+p2 <- ggplot(data=chill3,mapping=aes(x=time,y=JulBF,col=ind_code)) + geom_point() + theme_wsj(base_size = 10,base_family = "serif")
+print(p2)
+# now add a smoothing line
+p2 + geom_smooth()
+# remove confidence intervals
+p2 + geom_smooth(se=FALSE)
+p2 + geom_smooth(se = FALSE, method = "glm")
+p2 + geom_smooth(se = FALSE, method = "gam")
+
+# The following is my graph up to now and I will try playing around with faceting
+p3 <- ggplot(data=chill3,mapping=aes(x=time,y=JulBF, color=ind_code)) + geom_point() + theme_wsj(base_size = 10,base_family = "serif") + geom_smooth(se = FALSE)
+print(p3)
+
+p3 + facet_grid(ind_code~.)
+p3 + facet_grid(.~ind_code)
+p3 + facet_grid(time~ind_code)
+p3 + facet_grid(ind_code~time)
+p3 + facet_grid(time~.)
+p3 + facet_grid(.~time)
+
+# faceting doesn't seem to work well with my data
+
+# Now I will try doing a little more and see if I can add error bars to my points with the standard deviation in my data frame
+p4 <- ggplot(chill3, aes(x=time, y=JulBF, color=ind_code)) + 
+  geom_line() +
+  geom_point() + 
+  theme_wsj(base_size = 10,base_family = "serif") + 
+  geom_errorbar(aes(ymin=JulBF-sd, ymax=JulBF+sd), width=.2,
+                position=position_dodge(0.05))
+print(p4)
+
+
+p4 <- ggplot(chill3, aes(x=time, y=JulBF, color=ind_code)) + 
+  geom_line() +
+  geom_point() + 
+  theme_wsj(base_size = 10,base_family = "serif") + 
+  geom_errorbar(aes(ymin=JulBF-sd, ymax=JulBF+sd), width=.2,
+                position=position_dodge(0.05)) + 
+  facet_grid(ind_code~., scales = "free_y")
+print(p4)
+
+p5 <- ggplot(chill3, aes(x=time, y=JulBF, color=ind_code)) + 
+  geom_line() +
+  geom_point() + 
+  theme_wsj(base_size = 10,base_family = "serif") + 
+  geom_errorbar(aes(ymin=JulBF-sd, ymax=JulBF+sd), width=.2,
+                position=position_dodge(0.05)) + 
+  facet_grid(.~ind_code, scales = "free_y")
+print(p5)
+
+```
+
+
