@@ -1,0 +1,254 @@
+---
+title: "igraphLesson"
+author: "Ethan Thibault"
+date: "4/23/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Today, I am going to talk about the package "igraph". This is a network analysis and visualization package that can be widely used across many different datasets. It can allow you to visualize your data and identify key players within the network, communities, cliques and more. I was hoping to use some of my own data today to show a useful application, but upon doing some of the analysis, it turned out that certain lines of code took 3 hours to complete, so we will use some datasets for igraph from the package "igraphdata".
+
+I will briefly talk about the data I had so you can see an application that won't be in the igraphdata datasets. I am working with a population of beetles that had their RNA extracted and sequenced to both analyze transcription levels as well as perform population genetic analyses on the acquired SNP data. Another package in R called Weighted Correlation Network Analysis (WGCNA) can analyze the expression data and group them into modules. These modules can then be converted to igraph class objects and analyzed for different centrality measures in igraph.
+
+So let's get started!
+
+First, we want to set our working directory, install the packages "igraph" and "igraphdata", and then load their libraries. The package igraphdata, will supply us with multiple premade datasets that we can work with in igraph.
+
+```{r}
+setwd("~/Documents/UVM_2018/BIO381")
+# install.packages("igraph")
+# install.packages("igraphdata")
+library(igraphdata)
+library(igraph)
+```
+
+Before we start working with the large datasets, I want to introduce you all to some of the basics in creating objects of class igraph and its structure.
+
+```{r}
+# Here are some simple commands to make very basic small networks
+g1 <- graph(edges = c(1,2,2,3,3,1), n = 3, directed = F)
+class(g1)
+g1
+```
+
+What does this output mean? The first word tells you that it is an igraph object. That is followed by four letters:
+
+- D or U for a directed or undirected graph
+- N for a named graph (when vertices have a name attribute)
+- W for a weighted graph (when edges have a weight attribute)
+- B for a bipartite graph 
+
+This is followed by the number of vertices and then the number of edges. Finally, it lists all the edges.
+
+Now let's plot it!
+
+```{r}
+plot(g1)
+
+# Now lets make a directed plot with 10 vertices. Directed is default
+g2 <- graph(edges = c(1,2,2,3,3,1,5,6,6,7,8,1), n=10)
+plot(g2)
+
+# Vertices can also be characters
+g3 <- graph(edges = c("Carol", "George","George","Paul","Paul","Carol")) # don't need to identify number of vertices
+plot(g3)
+
+# You can also have multiple arrows between two nodes and isolates
+g4 <- graph(edges = c("Carol", "George","George","Paul","Paul","Carol"), isolates = c("Jeremy", "Nick", "Sherry"))
+plot(g4)
+
+# You can also make a network by indicating edges
+plot(graph_from_literal(a--b,b---c)) # number of dashes doesn't matter
+plot(graph_from_literal(b-+c,c+--d))
+```
+
+So now we know how to make simple igraph objects, let's access some pieces of the igraph object.
+
+```{r}
+# Edges
+E(g4)
+
+# Vertices
+V(g4)
+
+# Network
+g4[]
+
+# You can access it in a similar way you would a matrix
+g4[1,] # first row
+g4[,1] # first column
+
+# you can add name attributes to the vectors and edges
+V(g4)$name # was already assigned when we made the object
+V(g4)$gender <- c("female", "male","male","male","male","female")
+vertex_attr(g4) # view attributes
+
+E(g4)$type <- "relationships" # adds relationship to all edges
+E(g4)$weight <- c(1,2,3) # adds a weight to each edge
+edge_attr(g4) # view attributes
+```
+
+With the atributes added, let's plot again and see some of the alterations we can make to the plot
+
+```{r}
+plot(g4)
+plot(g4, edge.arrow.size=1, vertex.label.color="black",vertex.label.dist=2,vertex.color=c("pink","blue")[1+(V(g4)$gender == "male")]) # makes males blue and girls pink
+
+# change vertex shape
+plot(g4, edge.arrow.size=01, vertex.label.color="black",vertex.label.dist=2,vertex.color=c("pink","blue")[1+(V(g4)$gender == "male")], vertex.shape="rectangle")
+
+# change edges
+plot(g4, edge.arrow.size=1, vertex.label.color="black",vertex.label.dist=2,vertex.color=c("pink","blue")[1+(V(g4)$gender == "male")], vertex.shape="rectangle", edge.color="green",edge.width=4)
+
+# I think this is fun
+plot(g4, edge.arrow.size=1, vertex.label.color="black",vertex.label.dist=2,vertex.color=c("pink","blue")[1+(V(g4)$gender == "male")], vertex.shape="rectangle", edge.color="green",edge.width=4, frame=TRUE)
+```
+
+How do you build some larger graphs?
+
+```{r}
+# make an empty graph
+eg <- make_empty_graph(100)
+plot(eg)
+
+# full graph
+fg <- make_full_graph(50)
+plot(fg)
+
+# some other formats for graphs
+# star graph
+st <- make_star(50)
+plot(st)
+# Tree graph
+tr <- make_tree(50, children = 3, mode = "undirected")
+plot(tr)
+```
+
+Let's use some real data!!
+
+```{r}
+# options in igraphdata
+data(package="igraphdata")
+# load immuno dataset
+data("immuno")
+# What is this dataset?
+class(immuno)
+str(immuno)
+immuno
+# what does it look like?
+plot(immuno, vertex.label=NA, vertex.size=4,vertex.color="purple", edge.color="green", frame=TRUE)
+```
+
+One powerful thing that igraph does is calculate different forms of centrality for you. This can help you identify key players within the network. Let's step through a few.
+
+Degree: the number of ties for a vertex.
+
+Arguments include graph, the igraph object, v, the ids of the vertices that will be analyzed, mode, out-degree/in-degree/total-degree for the sum (undirected graphs are defaulted to "all").
+
+```{r}
+# Degree
+deg <- degree(immuno, mode="all")
+str(deg)
+plot(deg)
+hist(deg)
+
+# another function for degree
+# res: degree value for each vertex
+# centralization: the graph level centrality index
+# theoretical_max: max theoretical centralization score for a graph of this size
+deg2 <- centr_degree(immuno, mode = "all", normalized = T) # normalized if true divides the graph level centrality by the theoretical_max
+str(deg2)
+plot(deg2[[1]])
+hist(deg2[[1]])
+```
+
+Closeness: centrality based on distance to others in the graph
+
+Arguments now also include weights. In a weighted graph they are automatically included (immuno is not).
+
+```{r}
+# closeness
+clos <- closeness(immuno, mode = "all", weights = NA)
+str(clos)
+plot(clos)
+hist(clos)
+
+# another function for closeness
+clos2 <- centr_clo(immuno, normalized=T) 
+str(clos2)
+plot(clos2[[1]])
+hist(clos2[[1]])
+```
+
+Eigenvectors: centrality proportional to the sum of connection centralities. In a little easier words, it is the centrality of a vertex proportional to the sum of the centrality values of those it is connected to.
+
+```{r}
+# Eigenvectors
+eig <- eigen_centrality(immuno, directed=F, weights=NA)
+str(eig) # eigenvalue per vertex, eigenvalue of eigenvector, options
+plot(eig[[1]])
+hist(eig[[1]])
+
+# another function for eigenvectors
+eig2 <- centr_eigen(immuno, directed=T, normalized=T) 
+str(eig2)
+plot(eig2[[1]])
+hist(eig2[[1]])
+```
+
+Betweenness: Centrality based on broker position
+
+A broker position is a position that is highly connected to groups that are not necessarily connected to each other otherwise.
+
+```{r}
+# Betweenness
+bet <- betweenness(immuno, directed=F, weights=NA)
+str(bet)
+plot(bet)
+hist(bet)
+# you can also calculate this for edges
+bet2 <- edge_betweenness(immuno, directed=F, weights=NA)
+str(bet2)
+plot(bet2)
+hist(bet2)
+# another function for betweenness
+bet3 <- centr_betw(immuno, directed=F, normalized=T)
+str(bet3)
+plot(bet3[[1]])
+hist(bet3[[1]])
+```
+
+igraph can also identify hub and authority genes.
+
+Hubs are vertices with many outgoing links while authorities are vertices with many incoming links.
+
+```{r}
+# hubs
+hs <- hub_score(immuno, weights=NA)
+str(hs)
+# get just the hub_scores
+hs <- hub_score(immuno)$vector
+head(hs)
+# authority
+as <- authority_score(immuno, weights=NA)$vector
+head(as)
+# plot these two
+par(mfrow=c(1,2))
+ plot(immuno, vertex.size=hs*50, main="Hubs", vertex.label=NA)
+ plot(immuno, vertex.size=as*30, main="Authorities",vertex.label=NA)
+```
+
+So what do you do with these values? Well, what if you want to know which vertices have the high centrality scores? Let's work with the eigenvectors
+
+```{r}
+# bring up the plot again
+plot(eig[[1]])
+# use a cut off of 0.2
+sigeigindex <- which(eig[[1]] >= 0.2)
+sigeigvalue <- eig[[1]][eig[[1]] >= 0.2]
+df <- cbind(sigeigindex, sigeigvalue)
+head(df)
+class(df)
+```
+
