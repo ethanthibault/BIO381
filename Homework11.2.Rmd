@@ -83,8 +83,6 @@ getMetric <- function(z=NULL, column = NULL) {
   return(avg)
 }
 
-getMetric(z = "Data.csv", column = 1)
-
 dat <- read.csv(file = "Data.csv", header = T)
 class(dat)
 
