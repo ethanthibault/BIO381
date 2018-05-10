@@ -1,0 +1,93 @@
+---
+title: "Homework11.2"
+author: "Ethan Thibault"
+date: "5/8/2018"
+output: html_document
+---
+
+This is Homework 11.
+
+Part 1
+
+```{r}
+# Set working directory
+setwd("~/Documents/UVM_2018/BIO381")
+
+
+# First the function from class
+
+###################################
+# Function: SpeciesAreaCurve
+# Creates power function for relationship of S and A
+# input: A = vector of island areas
+# input: c = intercept constant
+# input: z = slope constant
+# output: S = vector of species richness values
+#---------------------------------
+SpeciesAreaCurve <- function(A=1:5000,c=0.5,z=0.26) {
+  S <- c*(A^z)
+  return(S)
+}
+
+# Now my own function
+# For a function that is relevant to my research I will work on subtracting the Julian day that my plants were planted from the Julian day that they flushed
+# DBF (days to bud flush = Julian days to bud flush - Julian planting day)
+# DBF = JDBF - JPD
+
+###################################
+# Function: Days to Bud Flush
+# Calculates the days to bud flush for each plant
+# input: JDBF = vector of dates
+# input: JPD = vector of dates
+# output: DBF = vector of days to bud flush
+#---------------------------------
+DaysToBudFlush <- function(JDBF=15:30,JPD=0:15) {
+  DBF <- JDBF - JPD
+  return(DBF)
+}
+
+# Does it work?
+DaysToBudFlush() # yes!
+```
+
+Part 2
+
+```{r}
+# First set the seed
+set.seed(12)
+
+# Function from class modified to read in my data
+###################################
+# Function: readData
+# read in or generate data frame
+# input: file name (or nothing for demo)
+# output: 3-column data frame of observed data (ID, x, y)
+#---------------------------------
+readData <- function(z=NULL) {
+    dF <- read.csv(file = z, header = T)
+  return(dF)
+}
+readData(z = "Data.csv" ) # Sweet!
+
+# Next function from class
+###################################
+# Function: getMetric
+# calculate metric for randomization test
+# input: 11-column data frame for regression
+# input: column you want to analyze
+# output: mean
+#---------------------------------
+getMetric <- function(z=NULL, column = NULL) {
+  mtrx <- as.matrix(z)
+  avg <- mean(as.vector(mtrx[,column]))
+  return(avg)
+}
+
+getMetric(z = "Data.csv", column = 1)
+
+dat <- read.csv(file = "Data.csv", header = T)
+class(dat)
+
+```
+
+I am not going to be able to finish this homework assignment in time. I know this is a large part of how we are graded, but I completed all the other homework assignments and showed up to all the classes so I hope that this won't seriously detriment my grade.

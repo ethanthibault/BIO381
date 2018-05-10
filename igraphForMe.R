@@ -437,3 +437,5 @@ membership(ceb) # community membership for each node
 modularity(ceb) # how modular the graph partitioning is
 # High modularity for a partitioning reflects dense connections within communities and sparse connections across communities.
 
+sites <- read.table(file = "Bad_SNPs_sites.kept.sites", header = T)
+head(sites)
