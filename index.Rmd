@@ -122,7 +122,7 @@ Due: [Hypotheses Exploration](Homework7.html)
 <div id='id-section9'/>
 ### Week 9: Homework 11
 
-[Here](Homework11.2.Rmd) is the link to homework 11.
+[Here](Homework11.2.html) is the link to homework 11.
 
 ------
 <div id='id-section10'/>
